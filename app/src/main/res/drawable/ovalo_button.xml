@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#B5D2CB"/> <!-- Color del fondo del botón -->
+        <corners android:radius="50dp"/> <!-- Radio para hacer la forma ovalada -->
+    </shape>
+</selector>

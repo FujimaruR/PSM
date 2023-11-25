@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#ffcab1</color>
+    <color name="purple_500">#ffcab1</color>
+    <color name="purple_700">#ffcab1</color>
+    <color name="teal_200">#ffcab1</color>
+    <color name="teal_700">#ffcab1</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="botones">#B6F916</color>
+    <color name="botonesdos">#FFCAB1</color>
+    <color name="fondo">#36382E</color>
+    <color name="letras">#B5D2CB</color>
+    <color name="colorTextDark">#000000</color>
+</resources>

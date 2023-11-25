@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="activity_horizontal_margin">48dp</dimen>
+
+        <dimen name="image_width">250dp</dimen>
+        <dimen name="image_height">250dp</dimen>
+
+
+</resources>

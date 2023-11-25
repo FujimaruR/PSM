@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context=".Citas">
+
+    <TextView
+        android:id="@+id/tituloCitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mis citas"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:id="@+id/cita1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cita#1"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tituloCitas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/letras"/>
+
+    <TextView
+        android:id="@+id/textoCitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de cita: 21/octubre/2023\nHora: 11:00am\nMascota: Yoko\nTipo de cita: Mensual\nDr: Emilio Yair Castillo Pacheco"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cita1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/botonesdos"
+        android:textColor="@color/colorTextDark"/>
+
+    <!-- LinearLayout para los dos botones -->
+    <LinearLayout
+        android:id="@+id/botonesLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textoCitas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón 1 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/boton1"
+            android:drawableStart="@drawable/baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar cita"/>
+
+        <!-- Botón 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/boton2"
+            android:drawableStart="@drawable/baseline_delete_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar cita"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cita2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cita#2"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/botonesLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/letras"/>
+
+    <TextView
+        android:id="@+id/textoCitasd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de cita: 15/Noviembre/2023\nHora: 2:00pm\nMascota: Jerry\nTipo de cita: Anual\nDr: Luis Angel Missael Esparza Lopez"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cita2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/botonesdos"
+        android:textColor="@color/colorTextDark"/>
+
+    <!-- LinearLayout para los dos botones -->
+    <LinearLayout
+        android:id="@+id/botonesLayoutd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textoCitasd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón 1 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/boton3"
+            android:drawableStart="@drawable/baseline_edit_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar cita"/>
+
+        <!-- Botón 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/boton4"
+            android:drawableStart="@drawable/baseline_delete_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar cita"/>
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonCargarMas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargar Más"
+        android:textColor="#ffffff"
+        android:background="@drawable/ovalo_button"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonesLayoutd"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/boton5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Agregar cita"
+        android:drawableStart="@drawable/baseline_add_box_24"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonCargarMas"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        android:background="@color/botones"
+        android:textColor="@color/colorTextDark"/>
+
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/letras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/botonInicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_home_24"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@android:color/transparent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/botonMascotas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Mis mascotas"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_favorite_24"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@android:color/transparent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/botonCitas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Mis citas"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_event_note_24"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@android:color/transparent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/botonPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_person_24"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
