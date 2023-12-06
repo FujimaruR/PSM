@@ -13,7 +13,7 @@ interface ApiInterface {
     // Registro de Usuarios
     @FormUrlEncoded
     @POST("Registro.php")
-    fun getApiResponseInsert(@Field("idSexo") sexo: Int, @Field("nombre") nombre: String, @Field("telefono") telefono: String, @Field("password") passw:String, @Field("email") correo:String,@Field("imagen") imagen:String,@Field("fechaNacimiento") fechaNacimiento:String,@Field("direccion") direccion:String ): Call<ApiRes>
+    fun getApiResponseInsert(@Field("rol") rol: Int, @Field("sexo") sexo: Int, @Field("nombre") nombre: String, @Field("telefono") telefono: String, @Field("passw") passw:String, @Field("correo") correo:String,@Field("imagen") imagen:String,@Field("fechaNacimiento") fechaNacimiento:String,@Field("direccion") direccion:String ): Call<ApiRes>
 
     // Edicion de Usuarios
     @FormUrlEncoded

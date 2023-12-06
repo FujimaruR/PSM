@@ -113,7 +113,7 @@ class DataDBlite(var context: Context): SQLiteOpenHelper(context, setDBlite.DB_N
             Log.e("Execption", e.toString())
             boolResult =  false
         }
-
+        Log.e("DBLITE", "Se inserto a la base de datos de sqlite")
         dataBase.close()
         return boolResult
     }
