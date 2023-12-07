@@ -2,6 +2,7 @@ package com.example.psm
 
 data class UsersResponse(
     val idUsuario: Int,
+    val rol: Int,
     val sexo: Int,
     val nombre: String,
     val telefono: String,

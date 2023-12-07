@@ -148,15 +148,15 @@ class editPerfil : AppCompatActivity() {
             val indiceSeleccionado = bgenero.selectedItemPosition
 
             val valorSeleccionado = when (indiceSeleccionado) {
-                1 -> false // Hombre
-                2 -> true // Mujer
+                1 -> true // Hombre
+                2 -> false // Mujer
                 else -> false // Maneja cualquier otro caso si es necesario
             }
 
             //val generoValue = bgenero.selectedItemPosition Supongamos que 0 es masculino y 1 es femenino
             val engenero = valorSeleccionado
 
-            val sexoInt = if (engenero) 1 else 2
+            val sexoInt = if (engenero) 0 else 1
 
             val calendar = Calendar.getInstance()
             val currentDate = calendar.time
@@ -252,11 +252,11 @@ class editPerfil : AppCompatActivity() {
             val intentd = Intent(this, ProfileActivity::class.java)
             startActivity(intentd)
         } else{
-            Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al editar usuario credencial", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onError(){
-        Toast.makeText(this, "Error al registrar usuario error", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Error al editar usuario", Toast.LENGTH_SHORT).show()
     }
 }

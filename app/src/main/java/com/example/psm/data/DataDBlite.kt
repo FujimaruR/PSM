@@ -149,6 +149,8 @@ class DataDBlite(var context: Context): SQLiteOpenHelper(context, setDBlite.DB_N
             boolResult = false
         }
 
+        Log.e("Editar usuario dblite", "Editado correctamente")
+
         dataBase.close()
         return boolResult
     }
