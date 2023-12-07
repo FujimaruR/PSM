@@ -70,6 +70,7 @@ class MascotasAddActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<ApiResponseEspecies>>, response: Response<List<ApiResponseEspecies>>) {
                 // Verificar que la respuesta sea exitosa y que contenga datos
                 if (response.isSuccessful && response.body() != null) {
+                    Log.e("API_CORRECTO", "Se pudieron obtener las especies")
                     // Mapear la lista de respuesta a una lista de nombres de las especies
                     val especiesNombres = response.body()!!.map { it.nombre }
 
