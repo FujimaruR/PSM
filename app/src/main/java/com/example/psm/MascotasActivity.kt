@@ -31,7 +31,7 @@ class MascotasActivity : AppCompatActivity() {
         val btneditard = findViewById<AppCompatButton>(R.id.botonEditarMascotad)
         val btnagregarmas = findViewById<AppCompatButton>(R.id.boton5)
 
-        recyclerView = findViewById(R.id.MascotaAdapter)
+        /*recyclerView = findViewById(R.id.MascotaAdapter)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Llena la lista con datos de la base de datos
@@ -63,11 +63,17 @@ class MascotasActivity : AppCompatActivity() {
                 }
             }
 
+            override fun onFailure(call: Call<List<ApiResponseEspecies>>, t: Throwable) {
+                // Manejar el error
+                Log.e("API_ERROR", "No se pudieron obtener las especies", t)
+            }
+        })
+
         val listaMascotas = obtenerDatosDeLaBaseDeDatos()
 
         // Crea el adaptador y asigna al RecyclerView
         mascotaAdapter = MascotaAdapter(listaMascotas)
-        recyclerView.adapter = mascotaAdapter
+        recyclerView.adapter = mascotaAdapter*/
 
         btninicio.setOnClickListener {
             val intent = Intent(this, InicioActivity::class.java)
@@ -82,7 +88,7 @@ class MascotasActivity : AppCompatActivity() {
         }
 
         btncitas.setOnClickListener {
-            val intentc = Intent(this, Citas::class.java)
+            val intentc = Intent(this, CitasFragment::class.java)
             startActivity(intentc)
         }
 
