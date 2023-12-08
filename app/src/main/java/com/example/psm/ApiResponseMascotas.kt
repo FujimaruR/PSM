@@ -12,5 +12,5 @@ data class ApiResponseMascotas(
     val idUsuario: Int,
     val idImagenesMascota: Int,
     val activoImagen: Int,
-    val imagen: ByteArray
+    val imagen: String
 )

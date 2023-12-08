@@ -9,5 +9,5 @@ data class MascotasModel(
     val idEspecie: Int,
     val nomEspecie: String,
     val idUsuario: Int,
-    val img1: ByteArray,
+    val img1: ByteArray
 )

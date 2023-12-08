@@ -3,6 +3,7 @@ package com.example.psm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatButton
@@ -16,6 +17,7 @@ import retrofit2.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.psm.data.MyMascotasList
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -50,23 +52,26 @@ class MascotasFragment : Fragment() {
                 if (response.isSuccessful && response.body() != null) {
                     Log.e("API_CORRECTO", "Se pudieron obtener las mascotas")
 
-                    val listaApiResponse = response.body()!!
-                    val listaMascotas = listaApiResponse.map { apiResponse ->
-                        MascotasModel(
-                            idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
-                            nombre = apiResponse.nombreMascota ?: "",
-                            activo = apiResponse.activoMascota ?: 0,
-                            edad = apiResponse.edad ?: 0,
-                            idEspecie = apiResponse.idEspecie ?: 0,
-                            idUsuario = apiResponse.idUsuario ?: 0,
-                            img1 = apiResponse.imagen ?: byteArrayOf(),
-                            nomEspecie = apiResponse.nombreEspecie ?: "",
-                            raza = apiResponse.raza ?: ""
-                        )
-                    }
-
-                    // Crea el adaptador y asigna al RecyclerView
-                    mascotaAdapter = MascotaAdapter(listaMascotas)
+                    MyMascotasList.myMList.clear()
+                    val listaApiResponse: List<ApiResponseMascotas>? = response.body()
+                    listaApiResponse?.forEach{ mascotas ->
+                    val bitmap: ByteArray = Base64.decode(mascotas.imagen, Base64.DEFAULT)
+                        val listasMascotas = listaApiResponse.map { apiResponse ->
+                            MascotasModel(
+                                idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
+                                nombre = apiResponse.nombreMascota ?: "",
+                                activo = apiResponse.activoMascota ?: 0,
+                                edad = apiResponse.edad ?: 0,
+                                idEspecie = apiResponse.idEspecie ?: 0,
+                                idUsuario = apiResponse.idUsuario ?: 0,
+                                img1 = bitmap,
+                                nomEspecie = apiResponse.nombreEspecie ?: "",
+                                raza = apiResponse.raza ?: ""
+                            )
+                        }
+                    MyMascotasList.myMList += listasMascotas
+                }
+                    mascotaAdapter = MascotaAdapter(MyMascotasList.myMList)
                     recyclerView.adapter = mascotaAdapter
 
                 } else {

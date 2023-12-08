@@ -1,8 +1,10 @@
 package com.example.psm
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -43,6 +45,7 @@ class MascotasActivity : AppCompatActivity() {
                     MyMascotasList.myMList.clear()
                     val listaApiResponse: List<ApiResponseMascotas>? = response.body()
                     listaApiResponse?.forEach{ mascotas ->
+                        val bitmap: ByteArray = Base64.decode(mascotas.imagen, Base64.DEFAULT)
                         val listasMascotas = listaApiResponse.map { apiResponse ->
                             MascotasModel(
                                 idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
@@ -51,7 +54,7 @@ class MascotasActivity : AppCompatActivity() {
                                 edad = apiResponse.edad ?: 0,
                                 idEspecie = apiResponse.idEspecie ?: 0,
                                 idUsuario = apiResponse.idUsuario ?: 0,
-                                img1 = apiResponse.imagen ?: byteArrayOf(),
+                                img1 = bitmap,
                                 nomEspecie = apiResponse.nombreEspecie ?: "",
                                 raza = apiResponse.raza ?: ""
                             )
