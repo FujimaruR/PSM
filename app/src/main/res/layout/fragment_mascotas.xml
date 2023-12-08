@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:background="@color/fondo"
+    tools:context=".MascotasActivity">
+
+
 
     <TextView
         android:id="@+id/title"
@@ -19,16 +27,151 @@
         android:padding="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mascotas_recyclerviewer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="16dp"
-        android:background="@color/fondo"
+        android:id="@+id/recyclerViewMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonEliminarMascota"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Primer LinearLayout -->
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/botonesdos">
+
+        <ImageView
+            android:id="@+id/imageMascota"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/cat"
+            android:layout_marginEnd="8dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/textNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextDark"
+                android:text="Nombre de mascota"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextDark"
+                android:text="Especie de mascota"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textRaza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextDark"
+                android:text="Raza"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textEdad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextDark"
+                android:text="Edad"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textPeso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextDark"
+                android:text="Peso"
+                android:layout_marginBottom="4dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textIDM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/colorTextDark"
+            android:text="01"
+            android:textSize="12sp"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonEditarMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:drawableStart="@drawable/baseline_edit_24"
+        android:background="@color/letras"
+        android:textColor="@color/colorTextDark"
+        android:text="Editar"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonEliminarMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableStart="@drawable/baseline_delete_24"
+        android:background="@color/letras"
+        android:textColor="@color/colorTextDark"
+        android:text="Eliminar"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonCargarMas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cargar Más"
+        android:textColor="#ffffff"
+        android:background="@drawable/ovalo_button"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonEliminarMascota"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/boton5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Agregar mascota"
+        android:drawableStart="@drawable/baseline_add_box_24"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/botonCargarMas"
+        android:background="@color/botones"
+        android:textColor="@color/colorTextDark"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/buttonAgregarMascota"
@@ -43,4 +186,5 @@
         android:scaleType="center"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

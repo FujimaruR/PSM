@@ -46,6 +46,7 @@ interface ApiInterface {
     @POST("GetEspecies.php")
     fun getApiEspecies(): Call<List<ApiResponseEspecies>>
 
+    @FormUrlEncoded
     @POST("GetMascotas.php")
     fun getApiMascotas(@Field("idUsuario") idUsuario: Int?): Call<List<ApiResponseMascotas>>
 
