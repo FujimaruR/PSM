@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     android:background="@color/fondo"
     tools:context=".MascotasActivity">
 
@@ -18,6 +22,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonEliminarMascota"
+        android:layout_marginTop="16dp"/>
 
     <!-- Primer LinearLayout -->
     <LinearLayout
@@ -126,107 +137,6 @@
         android:textColor="@color/colorTextDark"
         android:text="Eliminar"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/botonEliminarMascota"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/botonesdos">
-
-        <ImageView
-            android:id="@+id/imageMascotad"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/dog"
-            android:layout_marginEnd="8dp"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextDark"
-                android:text="Nombre de mascota"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextDark"
-                android:text="Especie de mascota"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextDark"
-                android:text="Raza"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextDark"
-                android:text="Edad"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextDark"
-                android:text="Peso"
-                android:layout_marginBottom="4dp"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/colorTextDark"
-            android:text="02"
-            android:textSize="12sp"
-            android:layout_gravity="end"/>
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonEditarMascotad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:drawableStart="@drawable/baseline_edit_24"
-        android:background="@color/letras"
-        android:textColor="@color/colorTextDark"
-        android:text="Editar"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonEliminarMascotad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:drawableStart="@drawable/baseline_delete_24"
-        android:background="@color/letras"
-        android:textColor="@color/colorTextDark"
-        android:text="Eliminar"/>
-
-
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -243,7 +153,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/botonEliminarMascotad"/>
+        app:layout_constraintTop_toBottomOf="@id/botonEliminarMascota"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/boton5"
@@ -261,59 +171,4 @@
         android:textColor="@color/colorTextDark"/>
 
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@color/letras"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/botonInicio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Inicio"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_home_24"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:background="@android:color/transparent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/botonMascotas"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Mis mascotas"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_favorite_24"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:background="@android:color/transparent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/botonCitas"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Mis citas"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_event_note_24"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:background="@android:color/transparent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/botonPerfil"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Perfil"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_person_24"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:background="@android:color/transparent"/>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
