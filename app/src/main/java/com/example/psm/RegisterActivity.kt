@@ -126,15 +126,16 @@ class RegisterActivity : AppCompatActivity() {
             val indiceSeleccionado = bgenero.selectedItemPosition
 
             val valorSeleccionado = when (indiceSeleccionado) {
-                1 -> false // Hombre
-                2 -> true // Mujer
+                1 -> true // Hombre
+                2 -> false // Mujer
                 else -> false // Maneja cualquier otro caso si es necesario
             }
 
             //val generoValue = bgenero.selectedItemPosition Supongamos que 0 es masculino y 1 es femenino
             val engenero = valorSeleccionado
 
-            val sexoInt = if (engenero) 1 else 2
+            val sexoInt = if (engenero) 0 else 1
+            val tuser = 0
 
             val calendar = Calendar.getInstance()
             val currentDate = calendar.time
@@ -145,7 +146,8 @@ class RegisterActivity : AppCompatActivity() {
 
             val apiiN = RetrofitInstance.instance
 
-            val call: Call<ApiRes> = apiiN.getApiResponseInsert(sexoInt, ennombre, entelefono, encontra, enemail, enimg, enfechaText, endireccion)
+            Log.e("Prueba1:", "Antes de mandar a la api")
+            val call: Call<ApiRes> = apiiN.getApiResponseInsert(tuser, sexoInt, ennombre, entelefono, encontra, enemail, enimg, enfechaText, endireccion)
 
             call.enqueue(object : Callback<ApiRes> {
                 @RequiresApi(Build.VERSION_CODES.O)
@@ -191,17 +193,17 @@ class RegisterActivity : AppCompatActivity() {
                                 }
                             }
                             override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
-                                Log.e("Error en la solicitud:", t.message.toString())
+                                Log.e("Error en la solicitud user:", t.message.toString())
 
                             }
                         })
                     } else{
-                        Log.e("Error en la solicitud:", "No jalo")
+                        Log.e("Error en la solicitud respuesta:", "No jalo")
                         onError()
                     }
                 }
                 override fun onFailure(call: Call<ApiRes>, t: Throwable) {
-                    Log.e("Error en la solicitud:", t.message.toString())
+                    Log.e("Error en la solicitud api:", t.message.toString())
                     onError()
                     val errorBody = call.request().body?.toString()
                     Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
@@ -251,7 +253,7 @@ class RegisterActivity : AppCompatActivity() {
             val intentd = Intent(this, InicioActivity::class.java)
             startActivity(intentd)
         } else{
-            Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al registrar credenciales", Toast.LENGTH_SHORT).show()
         }
     }
 
