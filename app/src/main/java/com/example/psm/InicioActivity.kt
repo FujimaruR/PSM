@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.psm.data.userSingleton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -47,7 +48,17 @@ class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         val headerView: View = navigationView.getHeaderView(0)
         val textView: TextView = headerView.findViewById(R.id.tvNickName)
 
+        val tvNickName = headerView.findViewById<TextView>(R.id.tvNickName)
 
+        // obtener instancia del ImageView en el header para la imagen de perfil
+        val ivProfilePicture = headerView.findViewById<ImageView>(R.id.ivProfilePicture)
+
+        // actualizar el texto del TextView con el nombre de usuario del Singleton
+        tvNickName.text = userSingleton.currentUserName
+
+        val bitmap: ByteArray = Base64.decode(userSingleton.currentUserImg, Base64.DEFAULT)
+        val bitmaperal = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.size)
+        ivProfilePicture.setImageBitmap(bitmaperal)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

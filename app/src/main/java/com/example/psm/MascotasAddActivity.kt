@@ -46,9 +46,7 @@ class MascotasAddActivity : AppCompatActivity() {
         val btncancelar = findViewById<AppCompatButton>(R.id.botonArribaIzquierda)
         val btnconfirmar = findViewById<AppCompatButton>(R.id.GuardarMasc)
 
-        val buttonSelectImage = findViewById<AppCompatButton>(R.id.botonCargarImagenes)
-        val buttonSelectImageD = findViewById<AppCompatButton>(R.id.botonIzquierda)
-        val buttonSelectImageT = findViewById<AppCompatButton>(R.id.botonDerecha)
+
         val imageViewS = findViewById<ImageView>(R.id.fotoMascota)
         val imageView1 = findViewById<ImageView>(R.id.imagenIzquierda)
         val imageView2 = findViewById<ImageView>(R.id.imagenDerecha)
@@ -114,13 +112,11 @@ class MascotasAddActivity : AppCompatActivity() {
             var bespecie = findViewById<Spinner>(R.id.spinnerMascot)
             var braza = findViewById<EditText>(R.id.editTextRaza)
             var bedad = findViewById<EditText>(R.id.editTextEdad)
-            var bpeso = findViewById<EditText>(R.id.editTextPeso)
 
             var ennombre = bnombre.text.toString()
             var enespecie = especieSeleccionada!!.idEspecie
             var enraza = braza.text.toString()
             var enedad = bedad.text.toString()
-            var enpeso = bpeso.text.toString()
             var activo = 1
 
             val edad: Int = enedad.toInt()
@@ -189,7 +185,7 @@ class MascotasAddActivity : AppCompatActivity() {
 
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (especies.isNotEmpty()) {
                     especieSeleccionada = especies[position]
                     Log.d("ID_ESPECIE", "ID de la especie seleccionada: ${especieSeleccionada?.idEspecie}")
