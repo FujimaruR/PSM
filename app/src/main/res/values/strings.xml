@@ -41,4 +41,12 @@
         <item>N/A-Semanal/Mensual/Anual</item>
     </string-array>
 
+    <string name="underlinedInicioSesion"><u>Inicia sesión aquí</u></string>
+
+
+    <string name="open">Abrir navegación</string>
+    <string name="close">Cerrar navegación</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

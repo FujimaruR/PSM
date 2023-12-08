@@ -43,9 +43,7 @@
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".Citas"
-            android:exported="false" />
+
         <activity
             android:name=".AddCita"
             android:exported="false" />
@@ -63,10 +61,21 @@
             android:exported="false" />
         <activity
             android:name=".InicioActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            />
+
+        <activity
+            android:name=".InicioActivity2"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            />
+
+
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -77,6 +86,10 @@
         <activity
             android:name=".InitActivity"
             android:exported="true">
+
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

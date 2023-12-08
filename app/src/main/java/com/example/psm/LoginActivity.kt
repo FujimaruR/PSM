@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
         datadblite = (DataDBlite(this))
@@ -37,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
         val btnregister = findViewById<AppCompatButton>(R.id.buttonInicio)
         val btnreturn = findViewById<AppCompatButton>(R.id.buttonRegresar)
 
-        val btnAdmin = findViewById<AppCompatButton>(R.id.btnAdmin)
 
         btnreturn.setOnClickListener {
             val intent = Intent(this, InitActivity::class.java)
@@ -47,6 +47,8 @@ class LoginActivity : AppCompatActivity() {
 
 
             btnregister.setOnClickListener {
+                val intentd = Intent(this, InicioActivity::class.java)
+                startActivity(intentd)
                 datadblite = (DataDBlite(this))
                 var bemail = findViewById<EditText>(R.id.TextMailEd)
                 var bcontra = findViewById<EditText>(R.id.TextPassworded)
@@ -86,16 +88,7 @@ class LoginActivity : AppCompatActivity() {
                             )
                             datadblite.insertUsers(usersAdd)
 
-                            val roles = apiResponse.rol
-
-                            if(roles == 0){
-                                Log.e("normal", "Perfecto")
-                                credenciales()
-                            } else{
-                                Log.e("admin", "Perfecto")
-                                credencialesD()
-                            }
-
+                            credenciales()
                         } else {
                             val apiInterface = RetrofitInstance.instance
                             val call: Call<ApiRes> = apiInterface.getApiResponseUniqueAdmin(email,password)
@@ -130,33 +123,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
 
-        btnAdmin.setOnClickListener {
-            datadblite = (DataDBlite(this))
-            var bemail = findViewById<EditText>(R.id.TextMailEd)
-            var bcontra = findViewById<EditText>(R.id.TextPassworded)
 
-            var email = bemail.text.toString()
-            var password = bcontra.text.toString()
-
-            val apiInterface = RetrofitInstance.instance
-            val call: Call<ApiRes> = apiInterface.getApiResponseUniqueAdmin(email,password)
-            Log.e("exito", "Perfecto")
-            call.enqueue(object : Callback<ApiRes> {
-                override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
-                    if (response != null) {
-                        credencialesAdmin();
-                    } else {
-                    }
-
-                }
-                override fun onFailure(call: Call<ApiRes>, t: Throwable) {
-                    Log.e("Error en la solicitud:", t.message.toString())
-
-                }
-            })
-
-
-        }
     }
 
     private fun isInternetAvailable(): Boolean {
@@ -182,15 +149,6 @@ class LoginActivity : AppCompatActivity() {
         if(userSingleton.currentUserName!!.isNotEmpty()){
             val intentd = Intent(this, InicioActivity::class.java)
             startActivity(intentd)
-        } else{
-            Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun credencialesD(){
-        if(userSingleton.currentUserName!!.isNotEmpty()){
-            val intentt = Intent(this, adminActivity::class.java)
-            startActivity(intentt)
         } else{
             Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
         }

@@ -1,41 +1,77 @@
 package com.example.psm
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.AppCompatButton
+import android.os.PersistableBundle
+import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
+import com.google.android.material.navigation.NavigationView
+import android.util.Base64
 
-class InicioActivity : AppCompatActivity() {
+class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var toggle : ActionBarDrawerToggle
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
 
-        val btninicio = findViewById<AppCompatButton>(R.id.botonInicio)
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
-        val btnmascotas = findViewById<AppCompatButton>(R.id.botonMascotas)
-        val btncitas = findViewById<AppCompatButton>(R.id.botonCitas)
-        val btnperfil = findViewById<AppCompatButton>(R.id.botonPerfil)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        btninicio.setOnClickListener {
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val headerView: View = navigationView.getHeaderView(0)
+        val textView: TextView = headerView.findViewById(R.id.tvNickName)
+
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.nav_misCitas -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,CitasFragment()).commit()
+            R.id.nav_misMascotas -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,MascotasFragment()).commit()
+            R.id.nav_home -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,HomeFragment()).commit()
+            R.id.nav_miPerfil -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,PerfilFragment()).commit()
+
         }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
 
-
-
-        btnmascotas.setOnClickListener {
-            val intentt = Intent(this, MascotasActivity::class.java)
-            startActivity(intentt)
-        }
-
-        btncitas.setOnClickListener {
-            val intentc = Intent(this, Citas::class.java)
-            startActivity(intentc)
-        }
-
-        btnperfil.setOnClickListener {
-            val intents = Intent(this, ProfileActivity::class.java)
-            startActivity(intents)
+    override fun onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            onBackPressedDispatcher.onBackPressed()
         }
     }
+
 }

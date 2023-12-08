@@ -13,12 +13,13 @@ class AddCita : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_cita)
+        supportActionBar?.hide()
 
         val editTextFecha = findViewById<EditText>(R.id.editTextNombre)
         val editTextHora = findViewById<EditText>(R.id.spinnerFecha)
 
         val btnreturn = findViewById<AppCompatButton>(R.id.botonArribaIzquierda)
-        val btnconfirm = findViewById<AppCompatButton>(R.id.GuardarMasc)
+        val btnconfirm = findViewById<EditText>(R.id.GuardarMasc)
 
         // Obtiene la fecha actual
         val calendar = Calendar.getInstance()
@@ -60,12 +61,12 @@ class AddCita : AppCompatActivity() {
         }
 
         btnreturn.setOnClickListener {
-            val intent = Intent(this, Citas::class.java)
+            val intent = Intent(this, CitasFragment::class.java)
             startActivity(intent)
         }
 
         btnconfirm.setOnClickListener {
-            val intentd = Intent(this, Citas::class.java)
+            val intentd = Intent(this, CitasFragment::class.java)
             startActivity(intentd)
         }
     }

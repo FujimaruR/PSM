@@ -14,13 +14,9 @@ class EditarMascotaActivity : AppCompatActivity() {
         val btnconfirmar = findViewById<AppCompatButton>(R.id.GuardarMasc)
 
         btncancelar.setOnClickListener {
-            val intent = Intent(this, MascotasActivity::class.java)
-            startActivity(intent)
         }
 
         btnconfirmar.setOnClickListener {
-            val intent = Intent(this, MascotasActivity::class.java)
-            startActivity(intent)
         }
     }
 }

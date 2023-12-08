@@ -16,6 +16,7 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        supportActionBar?.hide()
 
         val btninicio = findViewById<AppCompatButton>(R.id.botonInicio)
 
@@ -59,12 +60,12 @@ class ProfileActivity : AppCompatActivity() {
 
 
         btnmascotas.setOnClickListener {
-            val intentt = Intent(this, MascotasActivity::class.java)
-            startActivity(intentt)
+            //  val intentt = Intent(this, MascotasActivity::class.java)
+            //  startActivity(intentt)
         }
 
         btncitas.setOnClickListener {
-            val intentc = Intent(this, Citas::class.java)
+            val intentc = Intent(this, CitasFragment::class.java)
             startActivity(intentc)
         }
 

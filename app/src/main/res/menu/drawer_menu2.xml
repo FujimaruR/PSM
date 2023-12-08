@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_doctores"
+            android:icon="@drawable/baseline_medical_information_24"
+            android:title="Doctores"/>
+        <item
+            android:id="@+id/nav_especies"
+            android:icon="@drawable/baseline_favorite_24"
+            android:title="Especies"
+            />
+        <item
+            android:id="@+id/nav_CerrarSesion"
+            android:icon="@drawable/baseline_exit_to_app_24"
+            android:title="Cerrar Sesion"
+            />
+
+    </group>
+
+</menu>

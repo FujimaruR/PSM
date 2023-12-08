@@ -60,12 +60,12 @@ class EditCitaActivity : AppCompatActivity() {
         }
 
         btnreturn.setOnClickListener {
-            val intent = Intent(this, Citas::class.java)
+            val intent = Intent(this, CitasFragment::class.java)
             startActivity(intent)
         }
 
         btnconfirm.setOnClickListener {
-            val intentd = Intent(this, Citas::class.java)
+            val intentd = Intent(this, CitasFragment::class.java)
             startActivity(intentd)
         }
     }

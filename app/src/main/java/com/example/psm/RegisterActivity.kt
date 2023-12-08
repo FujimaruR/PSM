@@ -41,14 +41,15 @@ class RegisterActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         AndroidThreeTen.init(this)
         datadblite = (DataDBlite(this))
 
-        val editTextFecha = findViewById<EditText>(R.id.editTextNombre)
-        val buttonSelectImage = findViewById<AppCompatButton>(R.id.buttonSelectImage)
-        val imageViewS = findViewById<ImageView>(R.id.imageView)
+        val editTextFecha = findViewById<EditText>(R.id.editDTP)
+        val buttonSelectImage = findViewById<AppCompatButton>(R.id.select_image_button)
+        val imageViewS = findViewById<ImageView>(R.id.profile_picture)
         try {
             resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
@@ -79,7 +80,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         val btnreturn = findViewById<AppCompatButton>(R.id.buttonCancel)
         val btnregister = findViewById<AppCompatButton>(R.id.buttonRegister)
-        val imageView = findViewById<ImageView>(R.id.imageView)
+        val imageView = findViewById<ImageView>(R.id.profile_picture)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -97,11 +98,11 @@ class RegisterActivity : AppCompatActivity() {
             var bnombre = findViewById<EditText>(R.id.editTextUsername)
             var bemail = findViewById<EditText>(R.id.editTextEmail)
             var bcontra = findViewById<EditText>(R.id.editTextContra)
-            var bfecha = findViewById<EditText>(R.id.editTextNombre)
+            var bfecha = findViewById<EditText>(R.id.editDTP)
             var bgenero = findViewById<Spinner>(R.id.spinnerGender)
             var btelefono = findViewById<EditText>(R.id.editTextPhone)
             var bdireccion = findViewById<EditText>(R.id.editTextAddress)
-            var ImageViews:ImageView = findViewById(R.id.imageView)
+            var ImageViews:ImageView = findViewById(R.id.profile_picture)
 
             var ennombre = bnombre.text.toString()
             var enemail = bemail.text.toString()
@@ -125,17 +126,15 @@ class RegisterActivity : AppCompatActivity() {
             val indiceSeleccionado = bgenero.selectedItemPosition
 
             val valorSeleccionado = when (indiceSeleccionado) {
-                1 -> true // Hombre
-                2 -> false // Mujer
+                1 -> false // Hombre
+                2 -> true // Mujer
                 else -> false // Maneja cualquier otro caso si es necesario
             }
 
             //val generoValue = bgenero.selectedItemPosition Supongamos que 0 es masculino y 1 es femenino
             val engenero = valorSeleccionado
 
-            val sexoInt = if (engenero) 0 else 1
-
-            val tuser = 0
+            val sexoInt = if (engenero) 1 else 2
 
             val calendar = Calendar.getInstance()
             val currentDate = calendar.time
@@ -145,11 +144,8 @@ class RegisterActivity : AppCompatActivity() {
             val currentDateString = dateFormat.format(calendar.getTime())
 
             val apiiN = RetrofitInstance.instance
-            Log.e("Prueba1:", "Antes de mandar a la api")
 
-            val call: Call<ApiRes> = apiiN.getApiResponseInsert(tuser, sexoInt, ennombre, entelefono, encontra, enemail, enimg, enfechaText, endireccion)
-
-            Log.e("Prueba2:", "Despues de la api")
+            val call: Call<ApiRes> = apiiN.getApiResponseInsert(sexoInt, ennombre, entelefono, encontra, enemail, enimg, enfechaText, endireccion)
 
             call.enqueue(object : Callback<ApiRes> {
                 @RequiresApi(Build.VERSION_CODES.O)
@@ -195,17 +191,17 @@ class RegisterActivity : AppCompatActivity() {
                                 }
                             }
                             override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
-                                Log.e("Error en la solicitud user:", t.message.toString())
+                                Log.e("Error en la solicitud:", t.message.toString())
 
                             }
                         })
                     } else{
-                        Log.e("Error en la solicitud respuesta:", "No jalo")
+                        Log.e("Error en la solicitud:", "No jalo")
                         onError()
                     }
                 }
                 override fun onFailure(call: Call<ApiRes>, t: Throwable) {
-                    Log.e("Error en la solicitud api:", t.message.toString())
+                    Log.e("Error en la solicitud:", t.message.toString())
                     onError()
                     val errorBody = call.request().body?.toString()
                     Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
@@ -255,11 +251,11 @@ class RegisterActivity : AppCompatActivity() {
             val intentd = Intent(this, InicioActivity::class.java)
             startActivity(intentd)
         } else{
-            Toast.makeText(this, "Error al registrar credenciales", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onError(){
-        Toast.makeText(this, "Error en la operacion", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show()
     }
 }

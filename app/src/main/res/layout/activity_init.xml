@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ahorra tiempo, Cuida Mejor a tus Mascotas"
-            android:textColor="@color/letras"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/imagenCentrada"
@@ -39,26 +39,24 @@
             android:id="@+id/boton1"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_rounded2"
             android:text="Iniciar sesion"
-            android:background="@color/botones"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            android:layout_marginTop="8dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <!-- Segundo botón debajo del primer botón -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/boton2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_rounded2"
             android:text="Registrarse"
-            android:background="@color/botones"
-            app:layout_constraintTop_toBottomOf="@+id/boton1"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boton1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -47,11 +47,12 @@ class editPerfil : AppCompatActivity() {
         setContentView(R.layout.activity_edit_perfil)
         datadblite = (DataDBlite(this))
 
-        val btnreturn = findViewById<AppCompatButton>(R.id.botonArribaIzquierda)
+        supportActionBar?.hide()
 
-        val editTextFecha = findViewById<EditText>(R.id.editTextNombre)
-        val buttonSelectImage = findViewById<AppCompatButton>(R.id.buttonSelectImage)
-        val imageViewS = findViewById<ImageView>(R.id.imageView)
+
+        val editTextFecha = findViewById<EditText>(R.id.editTextUsername)
+        val buttonSelectImage = findViewById<EditText>(R.id.select_image_button)
+        val imageViewS = findViewById<ImageView>(R.id.profile_picture)
         try {
             resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
@@ -85,17 +86,14 @@ class editPerfil : AppCompatActivity() {
         }
 
         val btnregister = findViewById<AppCompatButton>(R.id.buttonRegister)
-        val imageView = findViewById<ImageView>(R.id.imageView)
+        val imageView = findViewById<ImageView>(R.id.profile_picture)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        btnreturn.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
+
 
         editTextFecha.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
@@ -124,7 +122,7 @@ class editPerfil : AppCompatActivity() {
             var bgenero = findViewById<Spinner>(R.id.spinnerGender)
             var btelefono = findViewById<EditText>(R.id.editTextPhone)
             var bdireccion = findViewById<EditText>(R.id.editTextAddress)
-            var ImageViews:ImageView = findViewById(R.id.imageView)
+            var ImageViews:ImageView = findViewById(R.id.profile_picture)
 
             var ennombre = bnombre.text.toString()
             var enemail = bemail.text.toString()
@@ -148,15 +146,15 @@ class editPerfil : AppCompatActivity() {
             val indiceSeleccionado = bgenero.selectedItemPosition
 
             val valorSeleccionado = when (indiceSeleccionado) {
-                1 -> true // Hombre
-                2 -> false // Mujer
+                1 -> false // Hombre
+                2 -> true // Mujer
                 else -> false // Maneja cualquier otro caso si es necesario
             }
 
             //val generoValue = bgenero.selectedItemPosition Supongamos que 0 es masculino y 1 es femenino
             val engenero = valorSeleccionado
 
-            val sexoInt = if (engenero) 0 else 1
+            val sexoInt = if (engenero) 1 else 2
 
             val calendar = Calendar.getInstance()
             val currentDate = calendar.time
@@ -252,11 +250,11 @@ class editPerfil : AppCompatActivity() {
             val intentd = Intent(this, ProfileActivity::class.java)
             startActivity(intentd)
         } else{
-            Toast.makeText(this, "Error al editar usuario credencial", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onError(){
-        Toast.makeText(this, "Error al editar usuario", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Error al registrar usuario error", Toast.LENGTH_SHORT).show()
     }
 }

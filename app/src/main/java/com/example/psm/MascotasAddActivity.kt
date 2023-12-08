@@ -37,6 +37,7 @@ class MascotasAddActivity : AppCompatActivity() {
     private val imagenes = mutableListOf<ImageView>()
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mascotas_add)
         datadblite = (DataDBlite(this))
@@ -70,7 +71,6 @@ class MascotasAddActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<ApiResponseEspecies>>, response: Response<List<ApiResponseEspecies>>) {
                 // Verificar que la respuesta sea exitosa y que contenga datos
                 if (response.isSuccessful && response.body() != null) {
-                    Log.e("API_CORRECTO", "Se pudieron obtener las especies")
                     // Mapear la lista de respuesta a una lista de nombres de las especies
                     val especiesNombres = response.body()!!.map { it.nombre }
 
@@ -95,13 +95,13 @@ class MascotasAddActivity : AppCompatActivity() {
         })
 
         btncancelar.setOnClickListener {
-            val intent = Intent(this, MascotasActivity::class.java)
-            startActivity(intent)
+            // val intent = Intent(this, MascotasActivity::class.java)
+            // startActivity(intent)
         }
 
         btnconfirmar.setOnClickListener {
-            val intent = Intent(this, MascotasActivity::class.java)
-            startActivity(intent)
+            //  val intent = Intent(this, MascotasActivity::class.java)
+            //  startActivity(intent)
         }
 
         buttonGuardarM.setOnClickListener {

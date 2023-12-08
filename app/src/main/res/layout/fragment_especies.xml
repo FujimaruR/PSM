@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context=".MascotasAdminActivity">
+
+    <TextView
+        android:id="@+id/tituloMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menú Especies"
+        android:textSize="40dp"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#ffffff"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/botones"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tituloMascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textoAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir Especie"
+        app:layout_constraintTop_toBottomOf="@id/tituloMascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/textoEspecie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Introduce la nueva Especie"
+        android:layout_marginStart="18dp"
+        app:layout_constraintTop_toBottomOf="@id/textoAgregar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextEspecie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textoEspecie"
+        android:background="@drawable/button_rounded"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:drawableStart="@drawable/baseline_add_box_24"
+        android:id="@+id/btnConfirmarEspecie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Especie"
+        app:layout_constraintTop_toBottomOf="@id/editTextEspecie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_rounded2"
+        android:textColor="@color/colorTextDark"/>
+
+    <View
+        android:id="@+id/viewLinea"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmarEspecie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Especie"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/viewLinea"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/textoEspecieE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona la Especie"
+        android:textSize="18dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textoEditar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"/>
+
+    <Spinner
+        android:id="@+id/spinnerMascot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textoEspecieE"
+        android:background="@drawable/button_rounded"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:entries="@array/especie_mascota" />
+
+    <TextView
+        android:id="@+id/textoEspecieEd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escribe el nuevo nombre de la Especie"
+        android:layout_marginStart="16dp"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/spinnerMascot"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextEspecieE"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="20dp"
+        android:background="@drawable/button_rounded"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textoEspecieEd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEliminarEspecie"
+        android:drawableStart="@drawable/baseline_delete_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+
+        android:text="Eliminar"
+        app:layout_constraintTop_toBottomOf="@id/editTextEspecieE"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_rounded2"
+        android:textColor="@color/colorTextDark"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:drawableStart="@drawable/baseline_edit_24"
+        android:id="@+id/btnEditarEspecie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Editar"
+        app:layout_constraintTop_toBottomOf="@id/editTextEspecieE"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_rounded2"
+        android:textColor="@color/colorTextDark"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/botones"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmarEspecie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

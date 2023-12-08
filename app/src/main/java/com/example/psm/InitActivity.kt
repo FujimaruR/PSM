@@ -10,6 +10,8 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
 
+        supportActionBar?.hide()
+
         val btnlogin = findViewById<AppCompatButton>(R.id.boton1)
         val btnregister = findViewById<AppCompatButton>(R.id.boton2)
 
