@@ -13,7 +13,7 @@ interface ApiInterface {
     // Registro de Usuarios
     @FormUrlEncoded
     @POST("Registro.php")
-    fun getApiResponseInsert(@Field("idSexo") sexo: Int, @Field("nombre") nombre: String, @Field("telefono") telefono: String, @Field("password") passw:String, @Field("email") correo:String,@Field("imagen") imagen:String,@Field("fechaNacimiento") fechaNacimiento:String,@Field("direccion") direccion:String ): Call<ApiRes>
+    fun getApiResponseInsert(@Field("rol") rol: Int, @Field("sexo") sexo: Int, @Field("nombre") nombre: String, @Field("telefono") telefono: String, @Field("passw") passw:String, @Field("correo") correo:String,@Field("imagen") imagen:String,@Field("fechaNacimiento") fechaNacimiento:String,@Field("direccion") direccion:String ): Call<ApiRes>
 
     // Edicion de Usuarios
     @FormUrlEncoded
@@ -52,7 +52,7 @@ interface ApiInterface {
     //registro mascotas
     @FormUrlEncoded
     @POST("RegistroMascotas.php")
-    fun getApiInsertMascotas(@Field("nombre") nombre:String?=null, @Field("edad") edad: Int?=null, @Field("raza") raza: String?=null, @Field("activo") activo: Int?=null, @Field("idEspecie") idEspecie: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("image") image: String?=null, @Field("image2") image2: String?=null, @Field("image3") image3: String?=null): Call<ApiRes>
+    fun getApiInsertMascotas(@Field("nombre") nombre:String?=null, @Field("edad") edad: Int?=null, @Field("raza") raza: String?=null, @Field("activo") activo: Int?=null, @Field("idEspecie") idEspecie: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("imagen1") image: String?=null, @Field("imagen2") image2: String?=null, @Field("imagen3") image3: String?=null): Call<ApiRes>
 
 
 }
