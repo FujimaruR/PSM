@@ -47,8 +47,6 @@ class LoginActivity : AppCompatActivity() {
 
 
             btnregister.setOnClickListener {
-                val intentd = Intent(this, InicioActivity::class.java)
-                startActivity(intentd)
                 datadblite = (DataDBlite(this))
                 var bemail = findViewById<EditText>(R.id.TextMailEd)
                 var bcontra = findViewById<EditText>(R.id.TextPassworded)
