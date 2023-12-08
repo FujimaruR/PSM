@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psm.data.MascotaAdapter
+import com.example.psm.data.userSingleton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,90 +22,58 @@ class MascotasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mascotas)
 
-        val btninicio = findViewById<AppCompatButton>(R.id.botonInicio)
-
-        val btnmascotas = findViewById<AppCompatButton>(R.id.botonMascotas)
-        val btncitas = findViewById<AppCompatButton>(R.id.botonCitas)
-        val btnperfil = findViewById<AppCompatButton>(R.id.botonPerfil)
-
         val btneditaru = findViewById<AppCompatButton>(R.id.botonEditarMascota)
-        val btneditard = findViewById<AppCompatButton>(R.id.botonEditarMascotad)
         val btnagregarmas = findViewById<AppCompatButton>(R.id.boton5)
 
-        /*recyclerView = findViewById(R.id.MascotaAdapter)
+        val idUse = userSingleton.currentUserId
+
+        recyclerView = findViewById(R.id.recyclerViewMascotas)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Llena la lista con datos de la base de datos
         val apiiN = RetrofitInstance.instance
 
-        apiiN.getApiMascotas().enqueue(object: Callback<List<ApiResponseMascotas>> {
+        apiiN.getApiMascotas(idUse).enqueue(object: Callback<List<ApiResponseMascotas>> {
             override fun onResponse(call: Call<List<ApiResponseMascotas>>, response: Response<List<ApiResponseMascotas>>) {
                 // Verificar que la respuesta sea exitosa y que contenga datos
                 if (response.isSuccessful && response.body() != null) {
-                    Log.e("API_CORRECTO", "Se pudieron obtener las especies")
-                    // Mapear la lista de respuesta a una lista de nombres de las especies
-                    val especiesNombres = response.body()!!.map { it.nombre }
+                    Log.e("API_CORRECTO", "Se pudieron obtener las mascotas")
 
-                    // Crear un ArrayAdapter usando la lista de nombres
-                    val adapter = ArrayAdapter<String>(
-                        this@MascotasAddActivity,
-                        android.R.layout.simple_spinner_item,
-                        especiesNombres
-                    )
+                    val listaApiResponse = response.body()!!
+                    val listaMascotas = listaApiResponse.map { apiResponse ->
+                        MascotasModel(
+                            idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
+                            nombre = apiResponse.nombre ?: "",
+                            activo = apiResponse.activo ?: 0,
+                            edad = apiResponse.edad ?: 0,
+                            idEspecie = apiResponse.idEspecie ?: 0,
+                            idUsuario = apiResponse.idUsuario ?: 0,
+                            img1 = apiResponse.img1 ?: byteArrayOf(), // Valor predeterminado si no está disponible en la API
+                            img2 = apiResponse.img2 ?: byteArrayOf(),
+                            img3 = apiResponse.img3 ?: byteArrayOf(),
+                            nomEspecie = apiResponse.nomEspecie ?: "",
+                            raza = apiResponse.raza ?: ""
+                        )
+                    }
 
-                    // Asignar el ArrayAdapter al Spinner
-                    spinner.adapter = adapter
+                    // Crea el adaptador y asigna al RecyclerView
+                    mascotaAdapter = MascotaAdapter(listaMascotas)
+                    recyclerView.adapter = mascotaAdapter
 
-                    especies = response.body()!!
-
-                    Log.d("ESPECIES_SIZE", "Número de especies: ${especies.size}")
                 } else {
                     Log.e("API_ERROR", "No se pudieron obtener las especies")
                 }
             }
 
-            override fun onFailure(call: Call<List<ApiResponseEspecies>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ApiResponseMascotas>>, t: Throwable) {
                 // Manejar el error
-                Log.e("API_ERROR", "No se pudieron obtener las especies", t)
+                Log.e("API_ERROR", "No se pudieron obtener las mascotas", t)
             }
         })
-
-        val listaMascotas = obtenerDatosDeLaBaseDeDatos()
-
-        // Crea el adaptador y asigna al RecyclerView
-        mascotaAdapter = MascotaAdapter(listaMascotas)
-        recyclerView.adapter = mascotaAdapter*/
-
-        btninicio.setOnClickListener {
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
-        btnmascotas.setOnClickListener {
-            val intentt = Intent(this, MascotasActivity::class.java)
-            startActivity(intentt)
-        }
-
-        btncitas.setOnClickListener {
-            val intentc = Intent(this, CitasFragment::class.java)
-            startActivity(intentc)
-        }
-
-        btnperfil.setOnClickListener {
-            val intents = Intent(this, ProfileActivity::class.java)
-            startActivity(intents)
-        }
 
         btneditaru.setOnClickListener {
             val intentse = Intent(this, EditarMascotaActivity::class.java)
             startActivity(intentse)
-        }
-
-        btneditard.setOnClickListener {
-            val intentsi = Intent(this, EditarMascotaActivity::class.java)
-            startActivity(intentsi)
         }
 
         btnagregarmas.setOnClickListener {

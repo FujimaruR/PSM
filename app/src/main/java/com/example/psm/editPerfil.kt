@@ -288,11 +288,11 @@ class editPerfil : AppCompatActivity() {
             val intentd = Intent(this, ProfileActivity::class.java)
             startActivity(intentd)
         } else{
-            Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al editar usuario credencial", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onError(){
-        Toast.makeText(this, "Error al registrar usuario error", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Error al editar usuario", Toast.LENGTH_SHORT).show()
     }
 }

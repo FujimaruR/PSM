@@ -86,7 +86,14 @@ class LoginActivity : AppCompatActivity() {
                             )
                             datadblite.insertUsers(usersAdd)
 
-                            credenciales()
+                            val roles = apiResponse.rol
+                            if(roles == 0){
+                                Log.e("normal", "Perfecto")
+                                credenciales()
+                            } else{
+                                Log.e("admin", "Perfecto")
+                                credencialesD()
+                            }
                         } else {
                             val apiInterface = RetrofitInstance.instance
                             val call: Call<ApiRes> = apiInterface.getApiResponseUniqueAdmin(email,password)
@@ -147,6 +154,15 @@ class LoginActivity : AppCompatActivity() {
         if(userSingleton.currentUserName!!.isNotEmpty()){
             val intentd = Intent(this, InicioActivity::class.java)
             startActivity(intentd)
+        } else{
+            Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun credencialesD(){
+        if(userSingleton.currentUserName!!.isNotEmpty()){
+            val intentt = Intent(this, adminActivity::class.java)
+            startActivity(intentt)
         } else{
             Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()
         }
