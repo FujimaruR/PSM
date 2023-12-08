@@ -2,14 +2,15 @@ package com.example.psm
 
 data class ApiResponseMascotas(
     val idMascota: Int,
-    val nombre: String,
+    val nombreMascota: String,
     val edad: Int,
     val raza: String,
-    val activo: Int,
+    val activoMascota: Int,
     val idEspecie: Int,
-    val nomEspecie: String,
+    val nombreEspecie: String,
+    val activoEspecie: Int,
     val idUsuario: Int,
-    val img1: ByteArray,
-    val img2: ByteArray,
-    val img3: ByteArray
+    val idImagenesMascota: Int,
+    val activoImagen: Int,
+    val imagen: ByteArray
 )

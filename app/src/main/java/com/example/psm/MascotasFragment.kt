@@ -54,15 +54,13 @@ class MascotasFragment : Fragment() {
                     val listaMascotas = listaApiResponse.map { apiResponse ->
                         MascotasModel(
                             idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
-                            nombre = apiResponse.nombre ?: "",
-                            activo = apiResponse.activo ?: 0,
+                            nombre = apiResponse.nombreMascota ?: "",
+                            activo = apiResponse.activoMascota ?: 0,
                             edad = apiResponse.edad ?: 0,
                             idEspecie = apiResponse.idEspecie ?: 0,
                             idUsuario = apiResponse.idUsuario ?: 0,
-                            img1 = apiResponse.img1 ?: byteArrayOf(), // Valor predeterminado si no está disponible en la API
-                            img2 = apiResponse.img2 ?: byteArrayOf(),
-                            img3 = apiResponse.img3 ?: byteArrayOf(),
-                            nomEspecie = apiResponse.nomEspecie ?: "",
+                            img1 = apiResponse.imagen ?: byteArrayOf(),
+                            nomEspecie = apiResponse.nombreEspecie ?: "",
                             raza = apiResponse.raza ?: ""
                         )
                     }

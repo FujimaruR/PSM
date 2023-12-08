@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psm.data.MascotaAdapter
+import com.example.psm.data.MyMascotasList
 import com.example.psm.data.userSingleton
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +27,6 @@ class MascotasActivity : AppCompatActivity() {
         val btneditaru = findViewById<AppCompatButton>(R.id.botonEditarMascota)
         val btnagregarmas = findViewById<AppCompatButton>(R.id.boton5)
 
-        val idUse = userSingleton.currentUserId
 
         recyclerView = findViewById(R.id.recyclerViewMascotas)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -33,31 +34,34 @@ class MascotasActivity : AppCompatActivity() {
         // Llena la lista con datos de la base de datos
         val apiiN = RetrofitInstance.instance
 
-        apiiN.getApiMascotas(idUse).enqueue(object: Callback<List<ApiResponseMascotas>> {
+        val call: Call<List<ApiResponseMascotas>> = apiiN.getApiMascotas(userSingleton.currentUserId)
+        call.enqueue(object : Callback<List<ApiResponseMascotas>> {
             override fun onResponse(call: Call<List<ApiResponseMascotas>>, response: Response<List<ApiResponseMascotas>>) {
                 // Verificar que la respuesta sea exitosa y que contenga datos
-                if (response.isSuccessful && response.body() != null) {
+                if (response.isSuccessful) {
                     Log.e("API_CORRECTO", "Se pudieron obtener las mascotas")
+                    MyMascotasList.myMList.clear()
+                    val listaApiResponse: List<ApiResponseMascotas>? = response.body()
+                    listaApiResponse?.forEach{ mascotas ->
+                        val listasMascotas = listaApiResponse.map { apiResponse ->
+                            MascotasModel(
+                                idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
+                                nombre = apiResponse.nombreMascota ?: "",
+                                activo = apiResponse.activoMascota ?: 0,
+                                edad = apiResponse.edad ?: 0,
+                                idEspecie = apiResponse.idEspecie ?: 0,
+                                idUsuario = apiResponse.idUsuario ?: 0,
+                                img1 = apiResponse.imagen ?: byteArrayOf(),
+                                nomEspecie = apiResponse.nombreEspecie ?: "",
+                                raza = apiResponse.raza ?: ""
+                            )
+                        }
 
-                    val listaApiResponse = response.body()!!
-                    val listaMascotas = listaApiResponse.map { apiResponse ->
-                        MascotasModel(
-                            idMascota = apiResponse.idMascota ?: 0, // Valor predeterminado si no está disponible en la API
-                            nombre = apiResponse.nombre ?: "",
-                            activo = apiResponse.activo ?: 0,
-                            edad = apiResponse.edad ?: 0,
-                            idEspecie = apiResponse.idEspecie ?: 0,
-                            idUsuario = apiResponse.idUsuario ?: 0,
-                            img1 = apiResponse.img1 ?: byteArrayOf(), // Valor predeterminado si no está disponible en la API
-                            img2 = apiResponse.img2 ?: byteArrayOf(),
-                            img3 = apiResponse.img3 ?: byteArrayOf(),
-                            nomEspecie = apiResponse.nomEspecie ?: "",
-                            raza = apiResponse.raza ?: ""
-                        )
+                        MyMascotasList.myMList += listasMascotas
                     }
 
                     // Crea el adaptador y asigna al RecyclerView
-                    mascotaAdapter = MascotaAdapter(listaMascotas)
+                    mascotaAdapter = MascotaAdapter(MyMascotasList.myMList)
                     recyclerView.adapter = mascotaAdapter
 
                 } else {
