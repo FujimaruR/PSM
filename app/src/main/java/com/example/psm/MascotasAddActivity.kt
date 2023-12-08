@@ -150,7 +150,7 @@ class MascotasAddActivity : AppCompatActivity() {
             val bitmap2: Bitmap = (drawable2 as BitmapDrawable).bitmap
 
             val byteArrayOutputStream2 = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream2)
+            bitmap2.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream2)
             val byteArray2 = byteArrayOutputStream2.toByteArray()
             val base64String2 = Base64.getEncoder().encodeToString(byteArray2)
             val enimg3:String = "data:image/png;base64," + base64String2
