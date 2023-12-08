@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -47,11 +49,47 @@ class editPerfil : AppCompatActivity() {
         setContentView(R.layout.activity_edit_perfil)
         datadblite = (DataDBlite(this))
 
+        // CARGA DE DATA DEL USUARIO
+
+        val nomcompleto = findViewById<TextView>(R.id.editTextUsername)
+        val fechaNacimiento = findViewById<TextView>(R.id.editDTP)
+        val telef = findViewById<TextView>(R.id.editTextPhone)
+        val direccion = findViewById<TextView>(R.id.editTextAddress)
+        val contrasena = findViewById<TextView>(R.id.editTextContra)
+        val correo = findViewById<TextView>(R.id.editTextEmail)
+        val imageUser: ImageView = findViewById(R.id.profile_picture)
+
+        val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+        val date = originalFormat.parse(userSingleton.currentUserNacimiento) // La fecha que quieres convertir
+        val formattedDate = targetFormat.format(date)
+
+        val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)
+
+        val selectedIndex = when (userSingleton.currentUserSexo) {
+            0 -> 0  // Hombre
+            1 -> 1  // Mujer
+            else -> 2  // Otro
+        }
+        spinnerGender.setSelection(selectedIndex)
+
+
+        nomcompleto.text = userSingleton.currentUserName
+        fechaNacimiento.text = formattedDate
+        telef.text = userSingleton.currentUserTelefono
+        direccion.text = userSingleton.currentUserDireccion
+        correo.text = userSingleton.currentUserCorreo
+        contrasena.text = userSingleton.currentUserPassw
+
+        val bitmap: ByteArray = android.util.Base64.decode(userSingleton.currentUserImg, android.util.Base64.DEFAULT)
+        val bitmaperal = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.size)
+        imageUser.setImageBitmap(bitmaperal)
+
+
         supportActionBar?.hide()
 
-
-        val editTextFecha = findViewById<EditText>(R.id.editTextUsername)
-        val buttonSelectImage = findViewById<EditText>(R.id.select_image_button)
+        val editTextFecha = findViewById<EditText>(R.id.editDTP)
+        val buttonSelectImage = findViewById<AppCompatButton>(R.id.select_image_button)
         val imageViewS = findViewById<ImageView>(R.id.profile_picture)
         try {
             resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -94,7 +132,6 @@ class editPerfil : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
 
-
         editTextFecha.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
@@ -118,7 +155,7 @@ class editPerfil : AppCompatActivity() {
             var bnombre = findViewById<EditText>(R.id.editTextUsername)
             var bemail = findViewById<EditText>(R.id.editTextEmail)
             var bcontra = findViewById<EditText>(R.id.editTextContra)
-            var bfecha = findViewById<EditText>(R.id.editTextNombre)
+            var bfecha = findViewById<EditText>(R.id.editDTP)
             var bgenero = findViewById<Spinner>(R.id.spinnerGender)
             var btelefono = findViewById<EditText>(R.id.editTextPhone)
             var bdireccion = findViewById<EditText>(R.id.editTextAddress)
@@ -146,8 +183,8 @@ class editPerfil : AppCompatActivity() {
             val indiceSeleccionado = bgenero.selectedItemPosition
 
             val valorSeleccionado = when (indiceSeleccionado) {
-                1 -> true // Hombre
-                2 -> false // Mujer
+                0 -> false // Hombre
+                1 -> true // Mujer
                 else -> false // Maneja cualquier otro caso si es necesario
             }
 
@@ -246,6 +283,7 @@ class editPerfil : AppCompatActivity() {
     }
 
     fun credenciales(){
+        Log.d("Entre a credenciales", "He entrado a credenciales.")
         if(userSingleton.currentUserName!!.isNotEmpty()){
             val intentd = Intent(this, ProfileActivity::class.java)
             startActivity(intentd)

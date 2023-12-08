@@ -21,7 +21,7 @@
         android:textColor="#ffffff"/>
 
     <ImageView
-        android:id="@+id/fotoMascota"
+        android:id="@+id/fotoUsuario"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/baseline_person_24"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/fotoMascota"
+        app:layout_constraintTop_toBottomOf="@id/fotoUsuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Nombre"
+            android:text="Aire"
             android:textSize="18dp"
             android:layout_toEndOf="@id/textView1"
             android:layout_marginStart="8dp"/>
