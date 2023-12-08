@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -83,6 +84,10 @@ class MascotasAddActivity : AppCompatActivity() {
 
                     // Asignar el ArrayAdapter al Spinner
                     spinner.adapter = adapter
+
+                    especies = response.body()!!
+
+                    Log.d("ESPECIES_SIZE", "Número de especies: ${especies.size}")
                 } else {
                     Log.e("API_ERROR", "No se pudieron obtener las especies")
                 }
@@ -155,6 +160,30 @@ class MascotasAddActivity : AppCompatActivity() {
             val apiiN = RetrofitInstance.instance
 
             val call: Call<ApiRes> = apiiN.getApiInsertMascotas(ennombre, edad, enraza, activo, enespecie, usridi, enimg1, enimg2, enimg3)
+
+            Log.e("Prueba1:", "Despues de registrar")
+
+            call.enqueue(object : Callback<ApiRes> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
+                    Log.e("Prueba2:", "Si jalooooooooo")
+                    if (response.isSuccessful) {
+                        val apiResponse: ApiRes? = response.body()
+                        Log.e("exito", "Perfecto")
+
+                        credenciales()
+                    } else{
+                        Log.e("Error en la solicitud respuesta:", "No jalo")
+                        onError()
+                    }
+                }
+                override fun onFailure(call: Call<ApiRes>, t: Throwable) {
+                    Log.e("Error en la solicitud api:", t.message.toString())
+                    onError()
+                    val errorBody = call.request().body?.toString()
+                    Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
+                }
+            })
         }
 
 
@@ -163,6 +192,7 @@ class MascotasAddActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 if (especies.isNotEmpty()) {
                     especieSeleccionada = especies[position]
+                    Log.d("ID_ESPECIE", "ID de la especie seleccionada: ${especieSeleccionada?.idEspecie}")
                 } else {
                     Log.d("ID_ESPECIE", "La lista de especies está vacía")
                 }
@@ -196,6 +226,19 @@ class MascotasAddActivity : AppCompatActivity() {
             3 -> R.id.imagenDerecha
             else -> throw IllegalArgumentException("Número de imagen no válido: $imageNumber")
         }
+    }
+
+    fun credenciales(){
+        if(userSingleton.currentUserName!!.isNotEmpty()){
+            val intentd = Intent(this, MascotasActivity::class.java)
+            startActivity(intentd)
+        } else{
+            Toast.makeText(this, "Error al registrar Mascota", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun onError(){
+        Toast.makeText(this, "Error en la operacion", Toast.LENGTH_SHORT).show()
     }
 
 

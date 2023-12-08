@@ -48,6 +48,7 @@
                 android:layout_marginEnd="8dp">
 
                 <TextView
+                    android:id="@+id/textNom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
@@ -55,6 +56,7 @@
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
+                    android:id="@+id/textEspecie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
@@ -62,6 +64,7 @@
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
+                    android:id="@+id/textRaza"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
@@ -69,6 +72,7 @@
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
+                    android:id="@+id/textEdad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
@@ -76,6 +80,7 @@
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
+                    android:id="@+id/textPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
@@ -85,6 +90,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/textIDM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
