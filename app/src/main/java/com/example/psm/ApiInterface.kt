@@ -85,5 +85,9 @@ interface ApiInterface {
     fun getApiInsertCita(@Field("hora") hora:String?=null, @Field("idMascota") idMascota: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("idDoctor") idDoctor: Int?=null, @Field("activo") activo: Int?=null, @Field("fecha")
     fecha: String?=null): Call<ApiRes>
 
+    @FormUrlEncoded
+    @POST("BajaCita.php")
+    fun getApiDeleteCitas(@Field("idCita") idCita: Int?=null): Call<ApiRes>
+
 
 }

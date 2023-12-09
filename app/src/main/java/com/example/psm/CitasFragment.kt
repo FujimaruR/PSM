@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.AppCompatImageButton
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
+import com.example.psm.data.CitasAdapter
 
 class CitasFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var CitasAdapter: CitasAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
