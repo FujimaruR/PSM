@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
@@ -61,9 +62,14 @@ class DoctoresFragment : Fragment() {
             Log.e("exito", "Perfecto")
             call.enqueue(object : Callback<ApiRes> {
                 override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
-                    if (response.isSuccessful) {
-                        // REINICIAR
+                    val apiResponse: ApiRes? = response.body()
+                    if (apiResponse?.resultado == "true") {
+                        Log.e("EXITO EN LA OPERACION", "PERFECTO EL EXITO")
+                        Toast.makeText(requireContext(), "Se ha creado el doctor", Toast.LENGTH_SHORT).show()
+
+
                     } else {
+                        // Realizar alguna otra acción si el resultado no es "true"
                     }
 
                 }
@@ -96,8 +102,10 @@ class DoctoresFragment : Fragment() {
 
             call.enqueue(object : Callback<ApiRes> {
                 override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
-                    if (response.isSuccessful) {
-                        Log.e("exito", "Perfecto")
+                    val apiResponse: ApiRes? = response.body()
+                    if (apiResponse?.resultado == "true") {
+                        Toast.makeText(requireContext(), "Se ha podido modificar el doctor", Toast.LENGTH_SHORT).show()
+
                     } else {
                         Log.e("exito", "Perfecto")
                     }
@@ -119,7 +127,9 @@ class DoctoresFragment : Fragment() {
             Log.e("exito", "Perfecto")
             call.enqueue(object : Callback<ApiRes> {
                 override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
-                    if (response.isSuccessful) {
+                    val apiResponse: ApiRes? = response.body()
+                    if (apiResponse?.resultado == "true") {
+                        Toast.makeText(requireContext(), "Se ha podido borrar el doctor", Toast.LENGTH_SHORT).show()
                         // REINICIAR
                     } else {
                     }

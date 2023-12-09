@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.google.android.material.navigation.NavigationView
 import android.util.Base64
+import androidx.appcompat.app.AlertDialog
 
 class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +33,10 @@ class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, CitasFragment())
+            .commit()
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
@@ -46,19 +51,9 @@ class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
 
         val headerView: View = navigationView.getHeaderView(0)
-        val textView: TextView = headerView.findViewById(R.id.tvNickName)
-
-        val tvNickName = headerView.findViewById<TextView>(R.id.tvNickName)
-
-        // obtener instancia del ImageView en el header para la imagen de perfil
-        val ivProfilePicture = headerView.findViewById<ImageView>(R.id.ivProfilePicture)
-
-        // actualizar el texto del TextView con el nombre de usuario del Singleton
-        tvNickName.text = userSingleton.currentUserName
 
         val bitmap: ByteArray = Base64.decode(userSingleton.currentUserImg, Base64.DEFAULT)
         val bitmaperal = BitmapFactory.decodeByteArray(bitmap, 0, bitmap.size)
-        ivProfilePicture.setImageBitmap(bitmaperal)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -67,14 +62,31 @@ class InicioActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 .replace(R.id.fragment_container,CitasFragment()).commit()
             R.id.nav_misMascotas -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,MascotasFragment()).commit()
-            R.id.nav_home -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,HomeFragment()).commit()
             R.id.nav_miPerfil -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,PerfilFragment()).commit()
-
+            R.id.nav_CerrarSesion -> {
+                mostrarDialogoConfirmacionCerrarSesion()
+                return true
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun mostrarDialogoConfirmacionCerrarSesion() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+            .setPositiveButton("Sí") { dialog, which ->
+                // Lógica para cerrar sesión
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+            }
+            .setNegativeButton("No") { dialog, which ->
+                // No hacer nada si el usuario elige "No"
+            }
+            .show()
     }
 
     override fun onBackPressed(){
