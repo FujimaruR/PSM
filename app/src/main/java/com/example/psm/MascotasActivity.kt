@@ -30,7 +30,7 @@ class MascotasActivity : AppCompatActivity() {
         val btnagregarmas = findViewById<AppCompatButton>(R.id.boton5)
 
 
-        recyclerView = findViewById(R.id.recyclerViewMascotas)
+        recyclerView = findViewById(R.id.mascotas_recyclerviewer)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Llena la lista con datos de la base de datos

@@ -29,12 +29,11 @@ class MascotasFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val root = inflater.inflate(R.layout.fragment_mascotas, container, false)
 
-        val btneditaru = root.findViewById<AppCompatButton>(R.id.botonEditarMascota)
-        val btnagregarmas = root.findViewById<AppCompatImageButton>(R.id.buttonAgregarMascota)
 
         val idUse = userSingleton.currentUserId
+        val btnagregarmas = root.findViewById<AppCompatImageButton>(R.id.buttonAgregarMascota)
 
-        recyclerView = root.findViewById(R.id.recyclerViewMascotas)
+        recyclerView = root.findViewById(R.id.mascotas_recyclerviewer)
         recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
 
         // Llena la lista con datos de la base de datos
@@ -85,15 +84,12 @@ class MascotasFragment : Fragment() {
             }
         })
 
-        btneditaru.setOnClickListener {
-            val intentse = Intent(this.requireContext(), EditarMascotaActivity::class.java)
-            startActivity(intentse)
-        }
-
         btnagregarmas.setOnClickListener {
             val intento = Intent(this.requireContext(), MascotasAddActivity::class.java)
             startActivity(intento)
         }
+
+
         return root
     }
 }

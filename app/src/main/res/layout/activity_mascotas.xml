@@ -1,88 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
-    android:background="@color/fondo"
-    tools:context=".MascotasActivity">
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@color/fondo">
 
-
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Mis Mascotas"
-        android:background="@color/fondo"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="16dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMascotas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/botonEliminarMascota"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Primer LinearLayout -->
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/botonesdos">
+        android:background="@drawable/rounded_corners"
+
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/imageMascota"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/cat"
-            android:layout_marginEnd="8dp"/>
+          />
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/textA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Nombre de mascota:"
+                    android:layout_marginBottom="4dp"/>
 
                 <TextView
                     android:id="@+id/textNom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded"
+
                     android:textColor="@color/colorTextDark"
                     android:text="Nombre de mascota"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/EspecieA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Especie de la mascota:"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
                     android:id="@+id/textEspecie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded"
+
                     android:textColor="@color/colorTextDark"
                     android:text="Especie de mascota"
                     android:layout_marginBottom="4dp"/>
+
+
+                <TextView
+                    android:id="@+id/RazaA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Raza de la mascota:"
+                    android:layout_marginBottom="4dp"/>
+
 
                 <TextView
                     android:id="@+id/textRaza"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
+                    android:background="@drawable/button_rounded"
                     android:text="Raza"
+                    android:layout_marginBottom="4dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/EdadA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Edad de la mascota:"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
@@ -90,101 +107,68 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextDark"
+                    android:background="@drawable/button_rounded"
                     android:text="Edad"
                     android:layout_marginBottom="4dp"/>
 
+
+
                 <TextView
-                    android:id="@+id/textPeso"
+                    android:id="@+id/NumeroA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorTextDark"
-                    android:text="Peso"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Numero de la mascota:"
                     android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/textIDM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/colorTextDark"
+                    android:text="01"
+                    android:textSize="12sp"
+                    />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textIDM"
-            android:layout_width="wrap_content"
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/colorTextDark"
-            android:text="01"
-            android:textSize="12sp"
-            android:layout_gravity="end"/>
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/botonEditarMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:drawableStart="@drawable/baseline_edit_24"
+                android:background="@drawable/button_rounded"
+                android:textColor="@color/colorTextDark"
+                android:text="Editar Mascota"
+                android:layout_marginEnd="15dp"/> <!-- Change the value of '15dp' to adjust the space between the buttons -->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/botonEliminarMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:drawableStart="@drawable/baseline_delete_24"
+                android:background="@drawable/button_rounded"
+                android:textColor="@color/colorTextDark"
+                android:text="Eliminar Mascota"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonEditarMascota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:drawableStart="@drawable/baseline_edit_24"
-        android:background="@color/letras"
-        android:textColor="@color/colorTextDark"
-        android:text="Editar"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonEliminarMascota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:drawableStart="@drawable/baseline_delete_24"
-        android:background="@color/letras"
-        android:textColor="@color/colorTextDark"
-        android:text="Eliminar"/>
-
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonCargarMas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cargar Más"
-        android:textColor="#ffffff"
-        android:background="@drawable/ovalo_button"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/botonEliminarMascota"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/boton5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Agregar mascota"
-        android:drawableStart="@drawable/baseline_add_box_24"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/botonCargarMas"
-        android:background="@color/botones"
-        android:textColor="@color/colorTextDark"/>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/buttonAgregarMascota"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/baseline_add_box_40"
-        android:background="@drawable/button_rounded3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:scaleType="center"
-        />
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

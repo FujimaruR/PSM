@@ -6,11 +6,12 @@
     <color name="teal_200">#56AE16</color>
     <color name="teal_700">#56AE16</color>
     <color name="verdeFuerte">#56AE16</color>
+    <color name="gris">#586143</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="botones">#B6F916</color>
     <color name="botonesdos">#FFCAB1</color>
     <color name="fondo">#36382E</color>
-    <color name="letras">#FAD716</color>
+    <color name="letras">#9DC73A</color>
     <color name="colorTextDark">#000000</color>
 </resources>
