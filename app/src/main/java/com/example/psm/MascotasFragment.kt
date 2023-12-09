@@ -17,19 +17,18 @@ import retrofit2.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import com.example.psm.data.MyMascotasList
 import retrofit2.Callback
 import retrofit2.Response
 
-class MascotasFragment : Fragment() {
+class MascotasFragment : Fragment(), MascotaAdapter.MascotaClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var mascotaAdapter: MascotaAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val root = inflater.inflate(R.layout.fragment_mascotas, container, false)
-
-
         val idUse = userSingleton.currentUserId
         val btnagregarmas = root.findViewById<AppCompatImageButton>(R.id.buttonAgregarMascota)
 
@@ -44,14 +43,7 @@ class MascotasFragment : Fragment() {
 
                 if (response.isSuccessful && response.body() != null) {
                     Log.e("API_CORRECTO", "Se pudieron obtener las mascotas")
-                    Log.e("API_CORRECTO", "Datos de respuesta: " + response.body().toString())
-                }
 
-                    // Verificar que la respuesta sea exitosa y que contenga datos
-                if (response.isSuccessful && response.body() != null) {
-                    Log.e("API_CORRECTO", "Se pudieron obtener las mascotas")
-
-                    MyMascotasList.myMList.clear()
                     val listaApiResponse: List<ApiResponseMascotas>? = response.body()
                     listaApiResponse?.forEach{ mascotas ->
                     val bitmap: ByteArray = Base64.decode(mascotas.imagen, Base64.DEFAULT)
@@ -68,9 +60,11 @@ class MascotasFragment : Fragment() {
                                 raza = apiResponse.raza ?: ""
                             )
                         }
-                    MyMascotasList.myMList += listasMascotas
+                        MyMascotasList.myMList.clear()
+                        MyMascotasList.myMList.addAll(listasMascotas)
                 }
                     mascotaAdapter = MascotaAdapter(MyMascotasList.myMList)
+                    mascotaAdapter.listener = this@MascotasFragment
                     recyclerView.adapter = mascotaAdapter
 
                 } else {
@@ -92,4 +86,24 @@ class MascotasFragment : Fragment() {
 
         return root
     }
+
+    override fun onEditarMascotaClick(mascota: MascotasModel) {
+        // Lógica para editar la mascota
+        Log.e("ID MAMALON EDITADO", mascota.idMascota.toString())
+    }
+
+    override fun onEliminarMascotaClick(mascota: MascotasModel) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("¿Estás seguro de que deseas eliminar esta mascota?")
+            .setPositiveButton("Sí") { dialog, which ->
+                // Lógica para eliminar la mascota
+                Log.e("ENTRE ACA JAJA EN ELIMINAR MASCOTA", mascota.idMascota.toString())
+            }
+            .setNegativeButton("No") { dialog, which ->
+                Log.e("no elimine la mascota", mascota.idMascota.toString())
+            }
+            .show()
+    }
+
+
 }

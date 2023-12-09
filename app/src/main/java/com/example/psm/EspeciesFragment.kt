@@ -91,12 +91,13 @@ class EspeciesFragment : Fragment() {
 
             val apiInterface = RetrofitInstance.instance
             val call: Call<ApiRes> = apiInterface.getApiModificarEspecie(especie, especieSeleccionada!!.idEspecie)
-            Log.e("exito", "Perfecto")
+
             call.enqueue(object : Callback<ApiRes> {
                 override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
                     if (response.isSuccessful) {
-                        // REINICIAR
+                        Log.e("exito", "Perfecto")
                     } else {
+                        Log.e("exito", "Perfecto")
                     }
 
                 }

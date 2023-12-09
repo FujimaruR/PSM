@@ -161,7 +161,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun credencialesD(){
         if(userSingleton.currentUserName!!.isNotEmpty()){
-            val intentt = Intent(this, adminActivity::class.java)
+            val intentt = Intent(this, InicioActivity2::class.java)
             startActivity(intentt)
         } else{
             Toast.makeText(this, "Error al registrar usuario credencial", Toast.LENGTH_SHORT).show()

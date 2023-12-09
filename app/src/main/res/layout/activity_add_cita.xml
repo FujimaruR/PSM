@@ -151,35 +151,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:entries="@array/nombre_doctor" />
 
-    <TextView
-        android:id="@+id/textoPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cita recurrente"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@id/spinnerDoctor"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"/>
-
-    <Spinner
-        android:id="@+id/spinnerCita"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_rounded"
-        android:padding="3dp"
-        app:layout_constraintTop_toBottomOf="@id/textoPeso"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:entries="@array/cita_recurrente" />
-
-
 
     <EditText
-        android:id="@+id/GuardarMasc"
+        android:id="@+id/guardarCita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -197,7 +171,7 @@
         android:textColorLink="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCita"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDoctor"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

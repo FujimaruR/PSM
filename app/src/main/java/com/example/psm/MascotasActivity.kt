@@ -59,8 +59,8 @@ class MascotasActivity : AppCompatActivity() {
                                 raza = apiResponse.raza ?: ""
                             )
                         }
-
-                        MyMascotasList.myMList += listasMascotas
+                        MyMascotasList.myMList.clear()
+                        MyMascotasList.myMList.addAll(listasMascotas)
                     }
 
                     // Crea el adaptador y asigna al RecyclerView

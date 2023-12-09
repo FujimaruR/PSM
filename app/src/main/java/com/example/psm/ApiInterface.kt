@@ -36,15 +36,31 @@ interface ApiInterface {
     fun getApiResponseInsertEspecie(@Field("especie") especie: String): Call<ApiRes>
 
     @FormUrlEncoded
+    @POST("InsertDoctor.php")
+    fun getApiResponseInsertDoctor(@Field("nombre") nombre: String,@Field("activo") activo: Int?): Call<ApiRes>
+
+    @FormUrlEncoded
     @POST("EditarEspecie.php")
     fun getApiModificarEspecie(@Field("especie") especie: String, @Field("idEspecie") idEspecie: Int?): Call<ApiRes>
+
+    @FormUrlEncoded
+    @POST("UpdateDoctor.php")
+    fun getApiModificarDoctor(@Field("nombre") nombre: String, @Field("activo") activo: Int? ,@Field("idDoctor") idDoctor: Int?): Call<ApiRes>
 
     @FormUrlEncoded
     @POST("EliminarEspecie.php")
     fun getApiEliminarESPECIE(@Field("idEspecie") idEspecie: Int?): Call<ApiRes>
 
+    @FormUrlEncoded
+    @POST("DeleteDoctor.php")
+    fun getApiEliminarDoctor(@Field("idDoctor") idEspecie: Int?): Call<ApiRes>
+
+
     @POST("GetEspecies.php")
     fun getApiEspecies(): Call<List<ApiResponseEspecies>>
+
+    @POST("ObtenerDoctores.php")
+    fun getApiDoctores(): Call<List<ApiResponseDoctores>>
 
     @FormUrlEncoded
     @POST("GetMascotas.php")
@@ -54,6 +70,12 @@ interface ApiInterface {
     @FormUrlEncoded
     @POST("RegistroMascotas.php")
     fun getApiInsertMascotas(@Field("nombre") nombre:String?=null, @Field("edad") edad: Int?=null, @Field("raza") raza: String?=null, @Field("activo") activo: Int?=null, @Field("idEspecie") idEspecie: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("imagen1") image: String?=null, @Field("imagen2") image2: String?=null, @Field("imagen3") image3: String?=null): Call<ApiRes>
+
+
+    @FormUrlEncoded
+    @POST("InsertCita.php")
+    fun getApiInsertCita(@Field("hora") hora:String?=null, @Field("idMascota") idMascota: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("idDoctor") idDoctor: Int?=null, @Field("activo") activo: Int?=null, @Field("fecha")
+    fecha: String?=null): Call<ApiRes>
 
 
 }

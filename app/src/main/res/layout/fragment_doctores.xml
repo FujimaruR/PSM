@@ -75,45 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/btnFechaEntrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_rounded2"
-        android:focusable="false"
-        android:hint="Selecciona la hora de entrada"
-        android:drawableStart="@drawable/baseline_event_note_24"
-        android:inputType="none"
-        android:textSize="14sp"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextEspecie"
-        />
 
-    <EditText
-        android:id="@+id/btnFechaSalida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_rounded2"
-        android:focusable="false"
-        android:hint="Selecciona la hora de salida"
-        android:drawableStart="@drawable/baseline_event_note_24"
-        android:inputType="none"
-        android:textSize="14sp"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFechaEntrada"
-        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:drawableStart="@drawable/baseline_add_box_24"
@@ -121,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agregar Doctor"
-        app:layout_constraintTop_toBottomOf="@id/btnFechaSalida"
+        app:layout_constraintTop_toBottomOf="@id/editTextEspecie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
@@ -204,45 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/btnFechaEntradaEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_rounded2"
-        android:focusable="false"
-        android:hint="Selecciona la hora de entrada"
-        android:drawableStart="@drawable/baseline_event_note_24"
-        android:inputType="none"
-        android:textSize="14sp"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextDoctor"
-        />
 
-    <EditText
-        android:id="@+id/btnFechaSalidaEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_rounded2"
-        android:focusable="false"
-        android:hint="Selecciona la hora de salida"
-        android:drawableStart="@drawable/baseline_event_note_24"
-        android:inputType="none"
-        android:textSize="14sp"
-        android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFechaEntradaEdit"
-        />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -253,7 +177,7 @@
         android:layout_marginEnd="40dp"
 
         android:text="Eliminar"
-        app:layout_constraintTop_toBottomOf="@id/btnFechaSalidaEdit"
+        app:layout_constraintTop_toBottomOf="@id/editTextDoctor"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="20dp"
@@ -269,7 +193,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
         android:text="Editar"
-        app:layout_constraintTop_toBottomOf="@id/btnFechaSalidaEdit"
+        app:layout_constraintTop_toBottomOf="@id/editTextDoctor"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_rounded2"

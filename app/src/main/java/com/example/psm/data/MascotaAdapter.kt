@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psm.R
 import com.example.psm.MascotasModel
+import android.util.Log
 import android.graphics.BitmapFactory
+import androidx.appcompat.widget.AppCompatButton
 
 class MascotaAdapter(private val mascotas: List<MascotasModel>) : RecyclerView.Adapter<MascotaAdapter.ViewHolder>(){
 
+    var listener: MascotaClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_mascotas,parent,false)
@@ -31,18 +34,39 @@ class MascotaAdapter(private val mascotas: List<MascotasModel>) : RecyclerView.A
 
         val bitmap = BitmapFactory.decodeByteArray(mascota.img1, 0, mascota.img1.size)
         holder.imagenImageView.setImageBitmap(bitmap)
+
+        // Asociar el clic del botón con la posición de la mascota
+        holder.botonEditar.setOnClickListener {
+            // Lógica para editar la mascota
+            listener?.onEditarMascotaClick(mascota)
+        }
+
+        holder.botonEliminar.setOnClickListener {
+            // Lógica para eliminar la mascota
+            listener?.onEliminarMascotaClick(mascota)
+        }
     }
 
     override fun getItemCount(): Int {
         return mascotas.size
     }
 
-    inner class ViewHolder (itemView: View) :RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreTextView: TextView = itemView.findViewById(R.id.textNom)
         val especieTextView: TextView = itemView.findViewById(R.id.textEspecie)
         val razaTextView: TextView = itemView.findViewById(R.id.textRaza)
         val edadTextView: TextView = itemView.findViewById(R.id.textEdad)
         val idTextView: TextView = itemView.findViewById(R.id.textIDM)
         val imagenImageView: ImageView = itemView.findViewById(R.id.imageMascota)
+        val botonEditar: AppCompatButton = itemView.findViewById(R.id.botonEditarMascota)
+        val botonEliminar: AppCompatButton = itemView.findViewById(R.id.botonEliminarMascota)
     }
+
+    interface MascotaClickListener {
+        fun onEditarMascotaClick(mascota: MascotasModel)
+        fun onEliminarMascotaClick(mascota: MascotasModel)
+    }
+
 }
+
+
