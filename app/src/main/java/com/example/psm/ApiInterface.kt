@@ -71,6 +71,14 @@ interface ApiInterface {
     @POST("RegistroMascotas.php")
     fun getApiInsertMascotas(@Field("nombre") nombre:String?=null, @Field("edad") edad: Int?=null, @Field("raza") raza: String?=null, @Field("activo") activo: Int?=null, @Field("idEspecie") idEspecie: Int?=null, @Field("idUsuario") idUsuario: Int?=null, @Field("imagen1") image: String?=null, @Field("imagen2") image2: String?=null, @Field("imagen3") image3: String?=null): Call<ApiRes>
 
+    @FormUrlEncoded
+    @POST("ModificarMascota.php")
+    fun getApiEditMascotas(@Field("nombre") nombre:String?=null, @Field("edad") edad: Int?=null, @Field("raza") raza: String?=null, @Field("idEspecie") idEspecie: Int?=null, @Field("idMascota") idMascota: Int?=null, @Field("imagen1") image: String?=null, @Field("imagen2") image2: String?=null, @Field("imagen3") image3: String?=null): Call<ApiRes>
+
+    @FormUrlEncoded
+    @POST("DeleteMascota.php")
+    fun getApiDeleteMascotas(@Field("idMascota") idMascota: Int?=null): Call<ApiRes>
+
 
     @FormUrlEncoded
     @POST("InsertCita.php")
