@@ -47,9 +47,6 @@ class CitasAdapter (private val citas: List<CitasModel>) : RecyclerView.Adapter<
         holder.idCitaEliminar.text = cita.IdCita.toString()
         // ... (configurar otras vistas)
 
-        val bitmap = BitmapFactory.decodeByteArray(cita.Imagen, 0, cita.Imagen.size)
-        holder.imagenImageView.setImageBitmap(bitmap)
-
         // Asociar el clic del botón con la posición de la mascota
         /*holder.botonEditar.setOnClickListener {
             // Lógica para editar la mascota
@@ -103,9 +100,8 @@ class CitasAdapter (private val citas: List<CitasModel>) : RecyclerView.Adapter<
         val razaTextView: TextView = itemView.findViewById(R.id.razaMascotaEdit)
         val fechaTextView: TextView = itemView.findViewById(R.id.textEspecie)
         val horaTextView: TextView = itemView.findViewById(R.id.textRaza)
-        val imagenImageView: ImageView = itemView.findViewById(R.id.imageMascota)
-        val doctorEditar: AppCompatButton = itemView.findViewById(R.id.textEdad)
-        val idCitaEliminar: AppCompatButton = itemView.findViewById(R.id.textIDM)
+        val doctorEditar: TextView = itemView.findViewById(R.id.textEdad)
+        val idCitaEliminar: TextView = itemView.findViewById(R.id.textIDM)
         val btnCitaEliminar: AppCompatButton = itemView.findViewById(R.id.botonEliminarMascota)
     }
 

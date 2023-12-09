@@ -1,6 +1,6 @@
 package com.example.psm
 
-data class CitasModel(
+data class ApiResponseCitas(
     val IdCita: Int,
     val FechaCita: String,
     val HoraCita: String,

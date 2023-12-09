@@ -89,5 +89,9 @@ interface ApiInterface {
     @POST("BajaCita.php")
     fun getApiDeleteCitas(@Field("idCita") idCita: Int?=null): Call<ApiRes>
 
+    @FormUrlEncoded
+    @POST("ObtenerCitas.php")
+    fun getApiCitas(@Field("idUsuario") idUsuario: Int?=null): Call<List<ApiResponseCitas>>
+
 
 }
