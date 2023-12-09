@@ -213,7 +213,7 @@ class EditarMascotaActivity : AppCompatActivity() {
 
     fun credenciales(){
         if(userSingleton.currentUserName!!.isNotEmpty()){
-            val intentd = Intent(this, MascotasActivity::class.java)
+            val intentd = Intent(this, MascotasFragment::class.java)
             startActivity(intentd)
         } else{
             Toast.makeText(this, "Error al registrar Mascota", Toast.LENGTH_SHORT).show()

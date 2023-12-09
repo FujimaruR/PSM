@@ -2,12 +2,15 @@ package com.example.psm
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,6 +96,47 @@ class MascotasActivity : AppCompatActivity() {
 
         btnEliminarMas.setOnClickListener {
             idMascotaSingleton.currentMascotaId = 1
+
+            val apiiN = RetrofitInstance.instance
+
+            val call: Call<ApiRes> = apiiN.getApiDeleteMascotas(idMascotaSingleton.currentMascotaId)
+
+            Log.e("Prueba1:", "Despues de registrar")
+
+            call.enqueue(object : Callback<ApiRes> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
+                    Log.e("Prueba2:", "Si jalooooooooo")
+                    if (response.isSuccessful) {
+                        val apiResponse: ApiRes? = response.body()
+                        Log.e("exito", "Perfecto")
+
+                        credenciales()
+                    } else{
+                        Log.e("Error en la solicitud respuesta:", "No jalo")
+                        onError()
+                    }
+                }
+                override fun onFailure(call: Call<ApiRes>, t: Throwable) {
+                    Log.e("Error en la solicitud api:", t.message.toString())
+                    onError()
+                    val errorBody = call.request().body?.toString()
+                    Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
+                }
+            })
         }
+    }
+
+    fun credenciales(){
+        if(userSingleton.currentUserName!!.isNotEmpty()){
+            val intentd = Intent(this, MascotasFragment::class.java)
+            startActivity(intentd)
+        } else{
+            Toast.makeText(this, "Error al registrar Mascota", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun onError(){
+        Toast.makeText(this, "Error en la operacion", Toast.LENGTH_SHORT).show()
     }
 }
