@@ -49,9 +49,6 @@ class editPerfil : AppCompatActivity() {
         setContentView(R.layout.activity_edit_perfil)
         datadblite = (DataDBlite(this))
 
-
-        val btnreturn = findViewById<AppCompatButton>(R.id.botonArribaIzquierda)
-
         // CARGA DE DATA DEL USUARIO
 
         val nomcompleto = findViewById<TextView>(R.id.editTextUsername)
@@ -272,16 +269,7 @@ class editPerfil : AppCompatActivity() {
             })
 
         }
-
-        btnreturn.setOnClickListener {
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
-        }
-
-
     }
-
-
 
     fun openFileDialog() {
         try {
@@ -297,8 +285,8 @@ class editPerfil : AppCompatActivity() {
     fun credenciales(){
         Log.d("Entre a credenciales", "He entrado a credenciales.")
         if(userSingleton.currentUserName!!.isNotEmpty()){
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
+            val intentd = Intent(this, ProfileActivity::class.java)
+            startActivity(intentd)
         } else{
             Toast.makeText(this, "Error al editar usuario credencial", Toast.LENGTH_SHORT).show()
         }

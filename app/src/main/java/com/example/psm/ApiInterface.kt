@@ -79,9 +79,6 @@ interface ApiInterface {
     @POST("DeleteMascota.php")
     fun getApiDeleteMascotas(@Field("idMascota") idMascota: Int?=null): Call<ApiRes>
 
-    @FormUrlEncoded
-    @POST("GetSingleMascota.php")
-    fun getApiSingleMascota(@Field("idMascota") idMascota: Int?=null): Call<List<ApiResponseMascotas>>
 
     @FormUrlEncoded
     @POST("InsertCita.php")

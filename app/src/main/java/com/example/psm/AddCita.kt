@@ -78,7 +78,7 @@ class AddCita : AppCompatActivity() {
         }
 
         btnreturn.setOnClickListener {
-            val intent = Intent(this, InicioActivity::class.java)
+            val intent = Intent(this, CitasFragment::class.java)
             startActivity(intent)
         }
 

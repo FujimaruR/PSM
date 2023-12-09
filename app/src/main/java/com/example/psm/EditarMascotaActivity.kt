@@ -3,7 +3,6 @@ package com.example.psm
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -38,7 +37,6 @@ class EditarMascotaActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
         setContentView(R.layout.activity_editar_mascota)
 
         val imageViewS = findViewById<ImageView>(R.id.fotoMascota)
@@ -46,36 +44,6 @@ class EditarMascotaActivity : AppCompatActivity() {
         val imageView2 = findViewById<ImageView>(R.id.imagenDerecha)
 
         imagenes.addAll(listOf(imageViewS, imageView1, imageView2))
-
-        val btnreturn = findViewById<AppCompatButton>(R.id.botonArribaIzquierda)
-
-
-        var mnombre = findViewById<EditText>(R.id.editTextNombre)
-        var mespecie = findViewById<Spinner>(R.id.spinnerMascot)
-        var mraza = findViewById<EditText>(R.id.editTextRaza)
-        var medad = findViewById<EditText>(R.id.editTextEdad)
-        var ImageViews: ImageView = findViewById(R.id.imagenIzquierda)
-        var ImageViews2: ImageView = findViewById(R.id.fotoMascota)
-        var ImageViews3: ImageView = findViewById(R.id.imagenDerecha)
-
-
-        val bitmap: Bitmap = BitmapFactory.decodeByteArray(idMascotaSingleton.currentImagen, 0, idMascotaSingleton.currentImagen!!.size)
-        ImageViews.setImageBitmap(bitmap)
-
-        val bitmap2: Bitmap = BitmapFactory.decodeByteArray(idMascotaSingleton.currentImagen, 0, idMascotaSingleton.currentImagen!!.size)
-        ImageViews2.setImageBitmap(bitmap2)
-
-        val bitmap3: Bitmap = BitmapFactory.decodeByteArray(idMascotaSingleton.currentImagen, 0, idMascotaSingleton.currentImagen!!.size)
-        ImageViews3.setImageBitmap(bitmap3)
-
-
-        val spinnerMascotas = findViewById<Spinner>(R.id.spinnerMascot)
-
-        val selectedIndex = idMascotaSingleton.currentIdEspecie
-
-        mnombre.setText(idMascotaSingleton.currentNameMascota)
-        mraza.setText(idMascotaSingleton.currentRaza)
-        medad.setText(idMascotaSingleton.currentEdad.toString())
 
 
         imageViewS.setOnClickListener { seleccionarImagenDeGaleria(1) }
@@ -129,6 +97,7 @@ class EditarMascotaActivity : AppCompatActivity() {
             var mespecie = findViewById<Spinner>(R.id.spinnerMascot)
             var mraza = findViewById<EditText>(R.id.editTextRaza)
             var medad = findViewById<EditText>(R.id.editTextEdad)
+            var mpeso = findViewById<EditText>(R.id.editTextPeso)
             var ImageViews: ImageView = findViewById(R.id.fotoMascota)
             var imageView1: ImageView = findViewById(R.id.fotoMascota)
             var imageView2: ImageView = findViewById(R.id.fotoMascota)
@@ -137,6 +106,7 @@ class EditarMascotaActivity : AppCompatActivity() {
             var enespecie = especieSeleccionada!!.idEspecie
             var razam = mraza.text.toString()
             var edadm = medad.text.toString()
+            var pesom = mpeso.text.toString()
 
             var enedad: Int = edadm.toInt()
 
@@ -176,21 +146,6 @@ class EditarMascotaActivity : AppCompatActivity() {
 
             val call: Call<ApiRes> = apiiN.getApiEditMascotas(nombrem, enedad, razam, enespecie, mascoteId, imgm, enimg2, enimg3)
 
-            val idEspecieSeleccionada = idMascotaSingleton.currentIdEspecie
-
-            var index = -1
-            for (i in especies.indices) {
-                if (especies[i].idEspecie == idEspecieSeleccionada) {
-                    index = i
-                    break
-                }
-            }
-
-            if (index != -1) {
-                spinner.setSelection(index)
-            }
-
-
             Log.e("Prueba1:", "Despues de registrar")
 
             call.enqueue(object : Callback<ApiRes> {
@@ -214,11 +169,6 @@ class EditarMascotaActivity : AppCompatActivity() {
                     Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
                 }
             })
-        }
-
-        btnreturn.setOnClickListener {
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
         }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -263,8 +213,8 @@ class EditarMascotaActivity : AppCompatActivity() {
 
     fun credenciales(){
         if(userSingleton.currentUserName!!.isNotEmpty()){
-            val intent = Intent(this, InicioActivity::class.java)
-            startActivity(intent)
+            val intentd = Intent(this, MascotasFragment::class.java)
+            startActivity(intentd)
         } else{
             Toast.makeText(this, "Error al registrar Mascota", Toast.LENGTH_SHORT).show()
         }

@@ -1,7 +1,6 @@
 package com.example.psm
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
@@ -18,10 +17,8 @@ import retrofit2.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.example.psm.data.MyMascotasList
-import com.example.psm.data.idMascotaSingleton
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -85,22 +82,14 @@ class MascotasFragment : Fragment(), MascotaAdapter.MascotaClickListener {
             val intento = Intent(this.requireContext(), MascotasAddActivity::class.java)
             startActivity(intento)
         }
+
+
         return root
     }
 
     override fun onEditarMascotaClick(mascota: MascotasModel) {
         // Lógica para editar la mascota
-
-        idMascotaSingleton.currentMascotaId = mascota.idMascota
-        idMascotaSingleton.currentNameMascota = mascota.nombre
-        idMascotaSingleton.currentRaza = mascota.raza
-        idMascotaSingleton.currentEspecie = mascota.nomEspecie
-        idMascotaSingleton.currentIdEspecie = mascota.idEspecie
-        idMascotaSingleton.currentImagen = mascota.img1
-        idMascotaSingleton.currentEdad = mascota.edad
-
-        val intentd = Intent(requireContext(), EditarMascotaActivity::class.java)
-            requireContext().startActivity(intentd)
+        Log.e("ID MAMALON EDITADO", mascota.idMascota.toString())
     }
 
     override fun onEliminarMascotaClick(mascota: MascotasModel) {
@@ -108,31 +97,7 @@ class MascotasFragment : Fragment(), MascotaAdapter.MascotaClickListener {
         builder.setMessage("¿Estás seguro de que deseas eliminar esta mascota?")
             .setPositiveButton("Sí") { dialog, which ->
                 // Lógica para eliminar la mascota
-                Log.e("ID MAMALON ELIMINADO", mascota.idMascota.toString())
-
-                val apiiN = RetrofitInstance.instance
-
-                val call: Call<ApiRes> = apiiN.getApiDeleteMascotas(mascota.idMascota)
-
-
-                call.enqueue(object : Callback<ApiRes> {
-                    @RequiresApi(Build.VERSION_CODES.O)
-                    override fun onResponse(call: Call<ApiRes>, response: Response<ApiRes>) {
-                        Log.e("Prueba2:", "Si jalooooooooo")
-                        if (response.isSuccessful) {
-                            val apiResponse: ApiRes? = response.body()
-                            Log.e("exito", "Perfecto")
-
-                        } else{
-                            Log.e("Error en la solicitud respuesta:", "No jalo")
-                        }
-                    }
-                    override fun onFailure(call: Call<ApiRes>, t: Throwable) {
-                        Log.e("Error en la solicitud api:", t.message.toString())
-                        val errorBody = call.request().body?.toString()
-                        Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
-                    }
-                })
+                Log.e("ENTRE ACA JAJA EN ELIMINAR MASCOTA", mascota.idMascota.toString())
             }
             .setNegativeButton("No") { dialog, which ->
                 Log.e("no elimine la mascota", mascota.idMascota.toString())

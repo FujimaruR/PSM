@@ -12,19 +12,6 @@
 
         tools:context=".editPerfil">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/botonArribaIzquierda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:drawableTop="@drawable/baseline_arrow_forward_24"
-            android:background="@android:color/transparent"
-            android:rotation="180"
-            />
-
 
         <TextView
             android:id="@+id/registro_usuario"
