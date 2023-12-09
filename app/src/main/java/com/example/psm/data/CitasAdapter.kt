@@ -58,7 +58,7 @@ class CitasAdapter (private val citas: List<CitasModel>) : RecyclerView.Adapter<
             holder.itemView.context.startActivity(intentd)
         }*/
 
-        holder.btnCitaEliminar.setOnClickListener {
+        /*holder.btnCitaEliminar.setOnClickListener {
             // Lógica para eliminar la mascota
             Log.e("ID MAMALON ELIMINADO", cita.IdCita.toString())
 
@@ -88,7 +88,7 @@ class CitasAdapter (private val citas: List<CitasModel>) : RecyclerView.Adapter<
                     Log.e("Respuesta del servidor (error):", errorBody ?: "Error body is null")
                 }
             })
-        }
+        }*/
     }
 
     override fun getItemCount(): Int {
@@ -102,7 +102,6 @@ class CitasAdapter (private val citas: List<CitasModel>) : RecyclerView.Adapter<
         val horaTextView: TextView = itemView.findViewById(R.id.textRaza)
         val doctorEditar: TextView = itemView.findViewById(R.id.textEdad)
         val idCitaEliminar: TextView = itemView.findViewById(R.id.textIDM)
-        val btnCitaEliminar: AppCompatButton = itemView.findViewById(R.id.botonEliminarMascota)
     }
 
     interface CitaClickListener {

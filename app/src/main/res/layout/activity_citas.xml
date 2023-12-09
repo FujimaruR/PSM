@@ -24,7 +24,7 @@
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/cat"
+            android:src="@drawable/baseline_notifications_24"
             />
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -166,17 +166,6 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp">
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/botonEliminarMascota"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:drawableStart="@drawable/baseline_delete_24"
-                android:background="@drawable/button_rounded"
-                android:textColor="@color/colorTextDark"
-                android:text="Cancelar Cita"/>
 
         </LinearLayout>
 
