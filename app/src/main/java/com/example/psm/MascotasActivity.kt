@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.psm.data.MascotaAdapter
 import com.example.psm.data.MyMascotasList
+import com.example.psm.data.idMascotaSingleton
 import com.example.psm.data.userSingleton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 class MascotasActivity : AppCompatActivity() {
 
@@ -28,6 +30,7 @@ class MascotasActivity : AppCompatActivity() {
 
         val btneditaru = findViewById<AppCompatButton>(R.id.botonEditarMascota)
         val btnagregarmas = findViewById<AppCompatButton>(R.id.boton5)
+        val btnEliminarMas = findViewById<AppCompatButton>(R.id.botonEliminarMascota)
 
 
         recyclerView = findViewById(R.id.mascotas_recyclerviewer)
@@ -86,6 +89,10 @@ class MascotasActivity : AppCompatActivity() {
         btnagregarmas.setOnClickListener {
             val intento = Intent(this, MascotasAddActivity::class.java)
             startActivity(intento)
+        }
+
+        btnEliminarMas.setOnClickListener {
+            idMascotaSingleton.currentMascotaId = 1
         }
     }
 }
